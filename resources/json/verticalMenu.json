@@ -1,0 +1,88 @@
+{
+    "menu": [
+        {
+            "url": "product.index",
+            "name": "product",
+            "i18n": "product",
+            "icon": "shopping_cart",
+            "slug": "product"
+        },
+        {
+            "url": "category.index",
+            "name": "category",
+            "i18n": "category",
+            "icon": "filter_list",
+            "slug": "category"
+        },
+        {
+            "url": "feature.index",
+            "name": "feature",
+            "i18n": "feature",
+            "icon": "memory",
+            "slug": "feature"
+        },
+        {
+            "url": "answer.index",
+            "name": "answer",
+            "i18n": "answer",
+            "icon": "assistant",
+            "slug": "answer"
+        },
+        {
+            "url": "project.index",
+            "name": "project",
+            "i18n": "project",
+            "icon": "apps",
+            "slug": "project"
+        },
+        {
+            "url": "slider.index",
+            "name": "slider",
+            "i18n": "slider",
+            "icon": "slideshow",
+            "slug": "slider"
+        },
+        {
+            "url": "certificate.index",
+            "name": "certificate",
+            "i18n": "certificate",
+            "icon": "message",
+            "slug": "certificate"
+        },
+        {
+            "url": "city.index",
+            "name": "city",
+            "i18n": "city",
+            "icon": "location_city",
+            "slug": "city"
+        },
+        {
+            "url": "setting.index",
+            "name": "setting",
+            "i18n": "setting",
+            "icon": "brightness_low",
+            "slug": "setting"
+        },
+        {
+            "url": "language.index",
+            "name": "language",
+            "i18n": "language",
+            "icon": "language",
+            "slug": "language"
+        },
+        {
+            "url": "translation.index",
+            "name": "translation",
+            "i18n": "translation",
+            "icon": "g_translate",
+            "slug": "translation"
+        },
+        {
+            "url": "hnh.index",
+            "name": "hnh",
+            "i18n": "hnh",
+            "icon": "shopping_cart",
+            "slug": "hnh"
+        }
+    ]
+}
