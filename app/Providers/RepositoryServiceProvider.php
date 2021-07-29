@@ -65,15 +65,5 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(EloquentRepositoryInterface::class, BaseRepository::class);
         $this->app->bind(LanguageRepositoryInterface::class, LanguageRepository::class);
         $this->app->bind(TranslationRepositoryInterface::class, TranslationRepository::class);
-        $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
-        $this->app->bind(FeatureRepositoryInterface::class, FeatureRepository::class);
-        $this->app->bind(AnswerRepositoryInterface::class, AnswerRepository::class);
-        $this->app->bind(CityRepositoryInterface::class, CityRepository::class);
-        $this->app->bind(ProjectRepositoryInterface::class, ProjectRepository::class);
-        $this->app->bind(ProductRepositoryInterface::class,ProductRepository::class);
-        $this->app->bind(SliderRepositoryInterface::class,SliderRepository::class);
-        $this->app->bind(SettingRepositoryInterface::class,SettingRepository::class);
-        $this->app->bind(CertificateRepositoryInterface::class,CertificateRepository::class);
-        $this->app->bind(HnhRepositoryInterface::class,HnhRepository::class);
     }
 }

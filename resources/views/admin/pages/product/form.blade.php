@@ -76,11 +76,25 @@
                                             </small>
                                             @enderror
                                         </div>
-                                        <div class="input-field">
-                                            <label for="description">{{trans('admin.description')}}</label>
-                                            <textarea id="description" class="ckeditor form-control"
-                                                      name="description[{{$key}}]">  {!! $product->language($language->id) !== null ? $product->language($language->id)->description:  '' !!}</textarea>
+                                        <div class="input-field ">
+                                            {!! Form::text('description['.$key.']',$product->language($language->id) !== null ? $product->language($language->id)->description:  '',['class' => 'validate '. $errors->has('description.*') ? '' : 'valid']) !!}
+                                            {!! Form::label('description['.$key.']',__('admin.description')) !!}
                                             @error('description.*')
+                                            <small class="errorTxt4">
+                                                <div class="error">
+                                                    {{$message}}
+                                                </div>
+                                            </small>
+                                            @enderror
+                                        </div>
+
+                                        <div class="input-field">
+                                            <h5 for="description">@lang('admin.content')</h5>
+                                            <textarea class="form-control" id="content-{{$key}}"
+                                                      name="content">
+                                                {!! $product->language($language->id) !== null ? $product->language($language->id)->content:  '' !!}
+                                            </textarea>
+                                            @error('content['.$key.']')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -90,14 +104,6 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </div>
-                            <div class="form-group">
-                                <div class="input-images"></div>
-                                @if ($errors->has('images'))
-                                    <span class="help-block">
-                                            {{ $errors->first('images') }}
-                                        </span>
-                                @endif
                             </div>
                         </div>
                         <div class="col s12 m6 8">
@@ -113,30 +119,11 @@
                                     </small>
                                     @enderror
                                 </div>
-                                <div class="input-field col s12">
-                                    {!! Form::number('price',$product->price,['class' => 'validate '. $errors->has('price') ? '' : 'valid']) !!}
-                                    {!! Form::label('price',__('admin.price')) !!}
-                                    @error('price')
-                                    <small class="errorTxt4">
-                                        <div class="error">
-                                            {{$message}}
-                                        </div>
-                                    </small>
-                                    @enderror
-                                </div>
-                                <div class="col s12 mb-2">
-                                    <label>
-                                        <input type="checkbox" name="status"
-                                               value="true" {{$product->status ? 'checked' : ''}}>
-                                        <span>{{__('admin.status')}}</span>
-                                    </label>
-                                </div>
                                 <div class="col">
                                     <label for="category_id">{{__('admin.category')}}</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <select name="category_id" class="select2 js-example-programmatic browser-default"
-                                            id="product_category_select">
+                                    <select name="category_id" class="select2 js-example-programmatic browser-default">
                                         <optgroup>
                                             @foreach($categories as $key => $category)
                                                 <option value="{{$category->id}}" {{$key === 0 ? 'selected' : ''}}>
@@ -145,92 +132,30 @@
                                             @endforeach
                                         </optgroup>
                                     </select>
+                                    @error('category_id')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
                                 </div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                @if(is_null($product->category))
-                                    <div class="features" id="features-container">
-                                        @if(count($categories))
-                                            @if(count($categories[0]->features))
-                                                @foreach($categories[0]->features as $feature)
-                                                    @if(!count($feature->answers))
-                                                        @continue;
-                                                    @endif
-                                                    <div class="col">
-                                                        <label for="feature[{{$feature->id}}][]">
-                                                            {{$feature->language(app()->getLocale()) ? substr($feature->language(app()->getLocale())->title,0,25) : substr($feature->language()->title,0,25)}}
-                                                        </label>
-                                                    </div>
-                                                    <div class="input-field col s12">
-                                                        <select class="select2-customize-result browser-default"
-                                                                multiple="multiple"
-                                                                id="select2-customize-result-{{$feature->id}}"
-                                                                name="feature[{{$feature->id}}][]">
-                                                            <optgroup>
-                                                                @foreach($feature->answers as $answer)
-                                                                    <option value="{{$answer->id}}">
-                                                                        {{$answer->language(app()->getLocale()) ? substr($answer->language(app()->getLocale())->title,0,25) : substr($answer->language()->title,0,25)}}
-                                                                    </option>
-                                                                @endforeach
-                                                            </optgroup>
-                                                        </select>
-                                                        @error('feature['.$feature->id.'].*')
-                                                        <small class="errorTxt4">
-                                                            <div class="error">
-                                                                {{$message}}
-                                                            </div>
-                                                        </small>
-                                                        @enderror
-                                                    </div>
-                                                @endforeach
-                                            @endif
-                                        @endif
-                                    </div>
-                                @else
-                                    <div class="features" id="features-container">
-                                        @if(count($product->category->features))
-                                            @foreach($product->category->features as $feature)
-                                                @if(!count($feature->answers))
-                                                    @continue;
-                                                @endif
-                                                <div class="col">
-                                                    <label for="feature[{{$feature->id}}][]">
-                                                        {{$feature->language(app()->getLocale()) ? substr($feature->language(app()->getLocale())->title,0,25) : substr($feature->language()->title,0,25)}}
-                                                    </label>
-                                                </div>
-                                                <div class="input-field col s12">
-                                                    <select class="select2-customize-result browser-default"
-                                                            multiple="multiple"
-                                                            id="select2-customize-result-{{$feature->id}}"
-                                                            name="feature[{{$feature->id}}][]">
-                                                        <optgroup>
-                                                            @foreach($feature->answers as $answer)
-                                                                <option
-                                                                        value="{{$answer->id}}"
-                                                                        {{$product->hasFeatureAnswers($answer->id) ? 'selected' : ''}}
-                                                                >
-                                                                    {{$answer->language(app()->getLocale()) ? substr($answer->language(app()->getLocale())->title,0,25) : substr($answer->language()->title,0,25)}}
-                                                                </option>
-                                                            @endforeach
-                                                        </optgroup>
-                                                    </select>
-                                                    @error('feature['.$feature->id.'].*')
-                                                    <small class="errorTxt4">
-                                                        <div class="error">
-                                                            {{$message}}
-                                                        </div>
-                                                    </small>
-                                                    @enderror
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    </div>
-
+                                <div class="input-field"></div>
+                                <div class="col s12 mt-3 mb-3">
+                                    <label>
+                                        <input type="checkbox" name="status"
+                                               value="true" {{$product->status ? 'checked' : ''}}>
+                                        <span>{{__('admin.status')}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-images"></div>
+                                @if ($errors->has('images'))
+                                    <span class="help-block">
+                                            {{ $errors->first('images') }}
+                                        </span>
                                 @endif
-
                             </div>
                         </div>
                     </div>
@@ -256,7 +181,13 @@
 
 {{-- page script --}}
 @section('page-script')
-    <script src="{{asset('js/scripts/form-select2.js')}}"></script>
-    <script src="{{asset('../ckeditor/ckeditor.js')}}"></script>
-
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        @foreach($languages as $key => $language)
+        CKEDITOR.replace('content-{{$key}}', {
+            filebrowserUploadUrl: "{{locale_route('upload', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+        @endforeach
+    </script>
 @endsection

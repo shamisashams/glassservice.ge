@@ -44,6 +44,7 @@ class Language extends Model
      */
     protected $fillable = ['title', 'locale', 'status'];
 
+
     public function getFilterScopes(): array
     {
         return [

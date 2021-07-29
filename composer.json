@@ -7,13 +7,16 @@
     "require": {
         "php": "^7.3|^8.0",
         "ext-pdo": "*",
+        "astrotomic/laravel-translatable": "^11.9",
         "doctrine/dbal": "^3.1",
+        "emadha/laravel-dynamic-config": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
+        "painlesscode/laravel-dynamic-config": "^1.0",
         "spatie/laravel-translation-loader": "^2.7",
         "staudenmeir/eloquent-json-relations": "^1.1"
     },

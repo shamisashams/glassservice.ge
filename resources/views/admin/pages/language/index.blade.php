@@ -75,15 +75,17 @@
                                                         <i class="material-icons">remove_red_eye</i>
                                                     </a>
 
-                                                    <a href="{{locale_route('language.edit',$language->id)}}"
-                                                       class="pl-3">
-                                                        <i class="material-icons">edit</i>
-                                                    </a>
+                                                    @if(!$language->default)
+                                                        <a href="{{locale_route('language.edit',$language->id)}}"
+                                                           class="pl-3">
+                                                            <i class="material-icons">edit</i>
+                                                        </a>
 
-                                                    <a href="{{locale_route('language.destroy',$language->id)}}"
-                                                       onclick="return confirm('Are you sure?')" class="pl-3">
-                                                        <i class="material-icons">delete</i>
-                                                    </a>
+                                                        <a href="{{locale_route('language.destroy',$language->id)}}"
+                                                           onclick="return confirm('Are you sure?')" class="pl-3">
+                                                            <i class="material-icons">delete</i>
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

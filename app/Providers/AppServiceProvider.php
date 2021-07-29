@@ -9,6 +9,8 @@
 namespace App\Providers;
 
 use App\Breadcrumbs\Breadcrumbs;
+use App\Models\Language;
+use App\Observers\LanguageObserver;
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Language::observe(LanguageObserver::class);
+
         Request::macro('breadcrumbs',function () {
             return new Breadcrumbs($this);
         });

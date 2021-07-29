@@ -45,7 +45,7 @@ class SetLocale
             array_shift($segments);
             return $this->redirectTo($segments);
         }
-        app()->setLocale($language->id);
+        app()->setLocale($language->locale);
         return $next($request);
     }
 
