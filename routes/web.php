@@ -8,6 +8,7 @@
  */
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CKEditorController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\TranslationController;
@@ -34,6 +35,9 @@ Route::prefix('{locale?}')
 
                 // Translation
                 Route::resource('translation', TranslationController::class);
+
+                // Translation
+                Route::resource('category', CategoryController::class);
 
             });
         });

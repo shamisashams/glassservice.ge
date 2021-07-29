@@ -36,7 +36,7 @@ interface EloquentRepositoryInterface
      * @param array $attributes
      *
      */
-    public function create(array $attributes);
+    public function create(array $attributes = []);
 
     /**
      * Update model by the given ID

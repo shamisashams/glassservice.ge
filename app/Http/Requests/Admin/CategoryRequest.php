@@ -36,21 +36,6 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        // Check if method is get,fields are nullable.
-        $isRequired = $this->method() === 'GET' ? 'nullable' : 'required';
-
-        $defaultLanguage = Language::where('default', true)->firstOrFail();
-
-        $data = [
-            'slug' => [$isRequired,'alpha_dash', Rule::unique('categories', 'slug')->ignore($this->category)],
-            'features' => 'nullable|array',
-            'features.*' => 'exists:features,id',
-        ];
-
-        if ($this->method !== 'GET') {
-            $data ['title.' . $defaultLanguage->id] = 'required|string|max:255';
-            $data ['description.' . $defaultLanguage->id] = 'required|string|max:255';
-        }
-        return $data;
+        return [];
     }
 }

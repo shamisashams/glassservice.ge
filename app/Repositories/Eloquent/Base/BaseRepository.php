@@ -48,8 +48,9 @@ class BaseRepository implements EloquentRepositoryInterface
      * Get all
      *
      * @param array $columns
+     * @param array $with
      *
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function all(array $columns = ["*"],array $with = [])
     {
@@ -63,7 +64,7 @@ class BaseRepository implements EloquentRepositoryInterface
      *
      * @return Model
      */
-    public function create(array $attributes = [])
+    public function create(array $attributes = []): Model
     {
         try {
             return $this->model->create($attributes);
