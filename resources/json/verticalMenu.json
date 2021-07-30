@@ -1,6 +1,13 @@
 {
     "menu": [
         {
+            "url": "category.index",
+            "name": "category",
+            "i18n": "category",
+            "icon": "language",
+            "slug": "category"
+        },
+        {
             "url": "language.index",
             "name": "language",
             "i18n": "language",

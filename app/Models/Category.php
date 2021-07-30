@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Translations\CategoryTranslation;
+use App\Traits\ScopeFilter;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -49,7 +50,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Category extends Model
 {
-    use SoftDeletes, Translatable, HasFactory;
+    use SoftDeletes, Translatable, HasFactory, ScopeFilter;
 
     /**
      * @var string
@@ -74,4 +75,23 @@ class Category extends Model
         'title',
         'description'
     ];
+
+
+    public function getFilterScopes(): array
+    {
+        return [
+            'id' => [
+                'hasParam' => true,
+                'scopeMethod' => 'id'
+            ],
+            'status' => [
+                'hasParam' => true,
+                'scopeMethod' => 'status'
+            ],
+            'title' => [
+                'hasParam' => true,
+                'scopeMethod' => 'titleTranslation'
+            ]
+        ];
+    }
 }

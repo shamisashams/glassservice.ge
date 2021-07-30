@@ -161,41 +161,16 @@ trait ScopeFilter
         return $query->where('key', 'like', '%' . $slug . '%');
     }
 
-
     /**
      * @param $query
      * @param $title
      *
      * @return mixed
      */
-    public function scopeTitleLanguage($query, $title)
+    public function scopeTitleTranslation($query, $title)
     {
-        return $query->whereHas('languages', function ($query) use ($title) {
+        return $query->whereHas('translations', function ($query) use ($title) {
             return $query->where('title', 'like', '%' . $title . '%');
         });
-    }
-
-    /**
-     * @param $query
-     * @param $value
-     *
-     * @return mixed
-     */
-    public function scopeValueLanguage($query, $value)
-    {
-        return $query->whereHas('languages', function ($query) use ($value) {
-            return $query->where('value', 'like', '%' . $value . '%');
-        });
-    }
-
-    /**
-     * @param $query
-     * @param $search
-     *
-     * @return mixed
-     */
-    public function scopeSearch($query, $search)
-    {
-        return $query->where('search', $search);
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
-
+Route::redirect('',config('translatable.fallback_locale'));
 Route::prefix('{locale?}')
     ->middleware(['setlocale'])
     ->group(function () {
@@ -38,6 +38,7 @@ Route::prefix('{locale?}')
 
                 // Translation
                 Route::resource('category', CategoryController::class);
+                Route::get('category/{category}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
 
             });
         });

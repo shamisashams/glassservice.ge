@@ -11,7 +11,7 @@
   'locale' => NULL,
   'use_fallback' => false,
   'use_property_fallback' => true,
-  'fallback_locale' => 'en',
+  'fallback_locale' => 'ge',
   'translation_model_namespace' => NULL,
   'translation_suffix' => 'Translation',
   'locale_key' => 'locale',

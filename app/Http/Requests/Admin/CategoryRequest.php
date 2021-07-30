@@ -36,6 +36,14 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        // Check if method is get,fields are nullable.
+        if ($this->method() === 'GET') {
+            return [];
+        }
+
+        return [
+            config('translatable.fallback_locale') . '.title' => 'required',
+        ];
+
     }
 }

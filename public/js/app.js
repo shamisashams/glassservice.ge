@@ -2139,56 +2139,6 @@ $(document).ready(function () {
   } else {
     $('.input-images').imageUploader();
   }
-
-  var productCategory = $('#product_category_select');
-  var featureContainer = $('#features-container');
-  var activeLanguage = $('meta[name="active_language"]').attr('content');
-  var defaultLanguage = $('meta[name="default_language"]').attr('content');
-  productCategory.on('change', function (event) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/category/".concat(event.target.value, "/feature")).then(function (response) {
-      var _response$data;
-
-      featureContainer.html('');
-      var category = (_response$data = response.data) === null || _response$data === void 0 ? void 0 : _response$data.category;
-      var content = '';
-
-      if (category.features) {
-        category.features.forEach(function (feature) {
-          var featureLanguage = getLanguage(feature.languages);
-
-          if (feature.answers.length) {
-            content = "\n                                ".concat(content, "\n                                <div class=\"col\">\n                                    <label for=\"feature[").concat(feature.id, "][]\">\n                                        ").concat(featureLanguage.title.substring(0, 25), "\n                                    </label>\n                                </div>\n                                    <div class=\"input-field col s12\">\n                                        <select class=\"select2-customize-result browser-default\" multiple=\"multiple\"\n                                                id=\"select2-customize-result-").concat(feature.id, "\" name=\"feature[").concat(feature.id, "][]\">\n                                            <optgroup>\n                                                ").concat(getOptions(feature.answers), "\n                                            </optgroup>\n                                        </select>\n                                    </div>\n                            ");
-          }
-        });
-        featureContainer.html(content);
-        $('.select2-customize-result').select2();
-      }
-    });
-  });
-
-  function getLanguage(languages) {
-    var data = languages.find(function (language, index) {
-      if (language.language_id == activeLanguage && language.title !== null) return true;
-    });
-
-    if (data !== undefined) {
-      return data;
-    }
-
-    data = languages.find(function (language, index) {
-      if (language.language_id == defaultLanguage && language.title !== null) return true;
-    });
-    return data;
-  }
-
-  function getOptions(answers) {
-    var options = '';
-    answers.forEach(function (answer) {
-      var answerLanguage = getLanguage(answer.languages);
-      options = "\n                ".concat(options, "\n                <option value=\"").concat(answer.id, "\">\n                                    ").concat(answerLanguage.title.substring(0, 25), "\n                </option>\n                \n                ");
-    });
-    return options;
-  }
 });
 })();
 
