@@ -9,9 +9,10 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\CKEditorController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TranslationController;
+use App\Http\Controllers\CKEditorController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
@@ -36,9 +37,13 @@ Route::prefix('{locale?}')
                 // Translation
                 Route::resource('translation', TranslationController::class);
 
-                // Translation
+                // Category
                 Route::resource('category', CategoryController::class);
                 Route::get('category/{category}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+                // Product
+                Route::resource('product', ProductController::class);
+                Route::get('product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
 
             });
         });

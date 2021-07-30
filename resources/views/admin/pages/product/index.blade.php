@@ -61,7 +61,7 @@
                                                 <td>{{$product->id}}</td>
                                                 <td>
                                                     @if($product->category)
-                                                        {{$product->category->language(app()->getLocale())? substr($product->category->language(app()->getLocale())->title,0,15): substr($product->category->language()->title,0,15)}}
+                                                        {{$product->category->title}}
                                                     @endif
                                                 </td>
                                                 <td>
@@ -75,25 +75,21 @@
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <ul class="tabs">
-                                                                @foreach($product->languages as $key => $language)
-                                                                    @if(isset($languages[$language->language_id]))
-                                                                        <li class="tab ">
-                                                                            <a href="#cat-{{$product->id}}-{{$language->language_id}}">
-                                                                                {{$languages[$language->language_id]->locale}}
-                                                                            </a>
-                                                                        </li>
-                                                                    @endif
+                                                                @foreach(config('translatable.locales') as $locale)
+                                                                    <li class="tab ">
+                                                                        <a href="#cat-{{$locale}}-{{$product->id}}">
+                                                                            {{$locale}}
+                                                                        </a>
+                                                                    </li>
                                                                 @endforeach
                                                             </ul>
                                                         </div>
                                                         <div class="col sm12 mt-2">
-                                                            @foreach($product->languages as $key => $language)
-                                                                @if(isset($languages[$language->language_id]))
-                                                                    <div id="cat-{{$product->id}}-{{$language->language_id}}"
-                                                                         class="">
-                                                                        {{$language->title}}
-                                                                    </div>
-                                                                @endif
+                                                            @foreach(config('translatable.locales') as $locale)
+                                                                <div id="cat-{{$locale}}-{{$product->id}}"
+                                                                     class="">
+                                                                    {{$product->translate($locale)->title ?? ''}}
+                                                                </div>
                                                             @endforeach
                                                         </div>
                                                     </div>

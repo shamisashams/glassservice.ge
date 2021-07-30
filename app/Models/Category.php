@@ -1,5 +1,11 @@
 <?php
-
+/**
+ *  app/Models/Category.php
+ *
+ * Date-Time: 30.07.21
+ * Time: 10:32
+ * @author Vito Makhatadze <vitomaxatadze@gmail.com>
+ */
 namespace App\Models;
 
 use App\Models\Translations\CategoryTranslation;
@@ -15,10 +21,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property int $id
  * @property int|null $category_id
- * @property array|null $event_meta
- * @property int|null $duration
- * @property int|null $type
- * @property int|null $form
+ * @property string|null $slug
+ * @property string|null $position
  * @property int|null $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at

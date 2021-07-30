@@ -8,6 +8,13 @@
             "slug": "category"
         },
         {
+            "url": "product.index",
+            "name": "product",
+            "i18n": "product",
+            "icon": "language",
+            "slug": "product"
+        },
+        {
             "url": "language.index",
             "name": "language",
             "i18n": "language",

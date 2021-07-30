@@ -24,18 +24,18 @@
                         <div class="col s12 m6 8">
                             <div class="row">
                                 <ul class="tabs">
-                                    @foreach($languages as $key => $language)
+                                    @foreach(config('translatable.locales') as $locale)
                                         <li class="tab col ">
-                                            <a href="#lang-{{$key}}">{{$language->locale}}</a>
+                                            <a href="#lang-{{$locale}}">{{$locale}}</a>
                                         </li>
                                     @endforeach
                                 </ul>
-                                @foreach($languages as $key => $language)
-                                    <div id="lang-{{$key}}" class="col s12  mt-5">
+                                @foreach(config('translatable.locales') as $locale)
+                                    <div id="lang-{{$locale}}" class="col s12  mt-5">
                                         <div class="input-field ">
-                                            {!! Form::text('meta_title['.$key.']',$product->language($language->id) !== null ? $product->language($language->id)->meta_title:  '',['class' => 'validate '. $errors->has('meta_title.*') ? '' : 'valid']) !!}
-                                            {!! Form::label('meta_title['.$key.']',__('admin.meta_title')) !!}
-                                            @error('meta_title.*')
+                                            {!! Form::text($locale.'[title]',$product->translate($locale)->title ?? '',['class' => 'validate '. $errors->has($locale.'.title') ? '' : 'valid']) !!}
+                                            {!! Form::label($locale.'[title]',__('admin.title')) !!}
+                                            @error($locale.'.title')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -44,9 +44,9 @@
                                             @enderror
                                         </div>
                                         <div class="input-field ">
-                                            {!! Form::text('meta_description['.$key.']',$product->language($language->id) !== null ? $product->language($language->id)->meta_description:  '',['class' => 'validate '. $errors->has('meta_description.*') ? '' : 'valid']) !!}
-                                            {!! Form::label('meta_description['.$key.']',__('admin.meta_description')) !!}
-                                            @error('meta_description.*')
+                                            {!! Form::text($locale.'[short_description]',$product->translate($locale)->short_description ?? '',['class' => 'validate '. $errors->has($locale.'.short_description') ? '' : 'valid']) !!}
+                                            {!! Form::label($locale.'[short_description]',__('admin.short_description')) !!}
+                                            @error($locale.'.short_description')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -55,9 +55,9 @@
                                             @enderror
                                         </div>
                                         <div class="input-field ">
-                                            {!! Form::text('meta_keywords['.$key.']',$product->language($language->id) !== null ? $product->language($language->id)->meta_keywords:  '',['class' => 'validate '. $errors->has('meta_keyword.*') ? '' : 'valid']) !!}
-                                            {!! Form::label('meta_keywords['.$key.']',__('admin.meta_keyword')) !!}
-                                            @error('meta_keywords.*')
+                                            {!! Form::text($locale.'[meta_title]',$product->translate($locale)->meta_title ?? '',['class' => 'validate '. $errors->has($locale.'.meta_title') ? '' : 'valid']) !!}
+                                            {!! Form::label($locale.'[meta_title]',__('admin.meta_title')) !!}
+                                            @error($locale.'.meta_title')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -66,9 +66,9 @@
                                             @enderror
                                         </div>
                                         <div class="input-field ">
-                                            {!! Form::text('title['.$key.']',$product->language($language->id) !== null ? $product->language($language->id)->title:  '',['class' => 'validate '. $errors->has('title.*') ? '' : 'valid']) !!}
-                                            {!! Form::label('title['.$key.']',__('admin.title')) !!}
-                                            @error('title.*')
+                                            {!! Form::text($locale.'[meta_description]',$product->translate($locale)->meta_keyword ?? '',['class' => 'validate '. $errors->has($locale.'.meta_description') ? '' : 'valid']) !!}
+                                            {!! Form::label($locale.'[meta_description]',__('admin.meta_description')) !!}
+                                            @error($locale.'.meta_description')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -77,9 +77,9 @@
                                             @enderror
                                         </div>
                                         <div class="input-field ">
-                                            {!! Form::text('description['.$key.']',$product->language($language->id) !== null ? $product->language($language->id)->description:  '',['class' => 'validate '. $errors->has('description.*') ? '' : 'valid']) !!}
-                                            {!! Form::label('description['.$key.']',__('admin.description')) !!}
-                                            @error('description.*')
+                                            {!! Form::text($locale.'[meta_keyword]',$product->translate($locale)->meta_description ?? '',['class' => 'validate '. $errors->has($locale.'.meta_keyword') ? '' : 'valid']) !!}
+                                            {!! Form::label($locale.'[meta_keyword]',__('admin.meta_keyword')) !!}
+                                            @error($locale.'.meta_keyword')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -88,13 +88,14 @@
                                             @enderror
                                         </div>
 
+
                                         <div class="input-field">
-                                            <h5 for="description">@lang('admin.content')</h5>
-                                            <textarea class="form-control" id="content-{{$key}}"
-                                                      name="content">
-                                                {!! $product->language($language->id) !== null ? $product->language($language->id)->content:  '' !!}
+                                            <h5 for="description">@lang('admin.description')</h5>
+                                            <textarea class="form-control" id="description-{{$locale}}"
+                                                      name="{{$locale}}[description]'">
+                                                {!! $product->translate($locale)->description ?? '' !!}
                                             </textarea>
-                                            @error('content['.$key.']')
+                                            @error($locale.'.description')
                                             <small class="errorTxt4">
                                                 <div class="error">
                                                     {{$message}}
@@ -126,8 +127,8 @@
                                     <select name="category_id" class="select2 js-example-programmatic browser-default">
                                         <optgroup>
                                             @foreach($categories as $key => $category)
-                                                <option value="{{$category->id}}" {{$key === 0 ? 'selected' : ''}}>
-                                                    {{$category->language(app()->getLocale())? substr($category->language(app()->getLocale())->title,0,15): substr($category->language()->title,0,15)}}
+                                                <option value="{{$category->id}}" {{$key === 0 ? 'selected' : ''}} {{$product->category_id === $category->id ? 'selected' : ''}}>
+                                                    {{$category->title}}
                                                 </option>
                                             @endforeach
                                         </optgroup>
@@ -161,7 +162,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            {!! Form::submit($product->category_id ? __('admin.update') : __('admin.create'),['class' => 'btn cyan waves-effect waves-light ']) !!}
+                            {!! Form::submit($product->created_at ? __('admin.update') : __('admin.create'),['class' => 'btn cyan waves-effect waves-light ']) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -181,11 +182,13 @@
 
 {{-- page script --}}
 @section('page-script')
+    <script src="{{asset('js/scripts/form-select2.js')}}"></script>
+
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        @foreach($languages as $key => $language)
-        CKEDITOR.replace('content-{{$key}}', {
-            filebrowserUploadUrl: "{{locale_route('upload', ['_token' => csrf_token() ])}}",
+        @foreach(config('translatable.locales') as $locale)
+        CKEDITOR.replace('description-{{$locale}}', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
             filebrowserUploadMethod: 'form'
         });
         @endforeach

@@ -9,7 +9,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -37,22 +36,14 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         // Check if method is get,fields are nullable.
-        $isRequired = $this->method() === 'GET' ? 'nullable' : 'required';
-        $defaultLanguage = Language::where('default', true)->firstOrFail();
-
-        $data = [
-            'slug' => [$isRequired, 'alpha_dash', Rule::unique('products', 'slug')->ignore($this->product)],
-            'price' => $isRequired.'|numeric'
-        ];
-
-        if ($this->method !== 'GET') {
-            $data ['meta_title.' . $defaultLanguage->id] = 'required|string';
-            $data ['meta_description.' . $defaultLanguage->id] = 'required|string';
-            $data ['meta_keywords.' . $defaultLanguage->id] = 'required|string';
-            $data ['title.' . $defaultLanguage->id] = 'required|string';
-            $data ['description.' . $defaultLanguage->id] = 'nullable|string';
-            $data['category_id'] = 'required|numeric|exists:categories,id';
+        if ($this->method() === 'GET') {
+            return [];
         }
-        return $data;
+
+        return [
+            'slug' => ['required', 'alpha_dash', Rule::unique('products', 'slug')->ignore($this->product)],
+            config('translatable.fallback_locale') . '.title' => 'required',
+            'category_id' => 'required|numeric|exists:categories,id'
+        ];
     }
 }

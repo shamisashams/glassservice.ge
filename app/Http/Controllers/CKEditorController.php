@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class CKEditorController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName.'_'.time().'.'.$extension;
 
-            $request->file('upload')->move(public_path('ckeditor-images'), $fileName);
+            $request->file('upload')->move(public_path('images'), $fileName);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('images/'.$fileName);
