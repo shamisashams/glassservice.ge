@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,10 @@ Route::prefix('{locale?}')
                 // Product
                 Route::resource('product', ProductController::class);
                 Route::get('product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+
+                // Project
+                Route::resource('project', ProjectController::class);
+                Route::get('product/{product}/destroy', [ProjectController::class, 'destroy'])->name('product.destroy');
 
             });
         });

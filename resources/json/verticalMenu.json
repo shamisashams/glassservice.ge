@@ -15,6 +15,13 @@
             "slug": "product"
         },
         {
+            "url": "project.index",
+            "name": "project",
+            "i18n": "project",
+            "icon": "language",
+            "slug": "project"
+        },
+        {
             "url": "language.index",
             "name": "language",
             "i18n": "language",
