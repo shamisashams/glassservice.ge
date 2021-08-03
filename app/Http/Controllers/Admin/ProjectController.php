@@ -15,23 +15,29 @@ use App\Http\Requests\Admin\ProjectRequest;
 use App\Models\Project;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ProjectRepositoryInterface;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
+use ReflectionException;
 
 class ProjectController extends Controller
 {
     /**
-     * @var \App\Repositories\ProjectRepositoryInterface
+     * @var ProjectRepositoryInterface
      */
     private $projectRepository;
 
     /**
-     * @var \App\Repositories\CategoryRepositoryInterface
+     * @var CategoryRepositoryInterface
      */
     private $categoryRepository;
 
     /**
-     * @param \App\Repositories\ProjectRepositoryInterface $projectRepository
-     * @param \App\Repositories\CategoryRepositoryInterface $categoryRepository
+     * @param ProjectRepositoryInterface $projectRepository
+     * @param CategoryRepositoryInterface $categoryRepository
      */
     public function __construct(
         ProjectRepositoryInterface  $projectRepository,
@@ -46,20 +52,20 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index(ProjectRequest $request)
     {
 
         return view('admin.pages.project.index', [
-            'projects' => $this->projectRepository->getData($request, ['translations'])
+            'projects' => $this->projectRepository->getData($request, ['translations','category'])
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -79,10 +85,10 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\Admin\ProjectRequest $request
+     * @param ProjectRequest $request
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \ReflectionException
+     * @return Application|RedirectResponse|Redirector
+     * @throws ReflectionException
      */
     public function store(ProjectRequest $request)
     {
@@ -104,9 +110,9 @@ class ProjectController extends Controller
      * Display the specified resource.
      *
      * @param string $locale
-     * @param \App\Models\Project $project
+     * @param Project $project
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show(string $locale, Project $project)
     {
@@ -119,9 +125,8 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param string $locale
-     * @param \App\Models\Category $category
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Project $project
+     * @return Application|Factory|View
      */
     public function edit(string $locale, Project $project)
     {
@@ -139,18 +144,18 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\Admin\CategoryRequest $request
+     * @param ProjectRequest $request
      * @param string $locale
-     * @param \App\Models\Category $category
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Project $project
+     * @return Application|RedirectResponse|Redirector
+     * @throws ReflectionException
      */
     public function update(ProjectRequest $request, string $locale, Project $project)
     {
         $saveData = Arr::except($request->except('_token'), []);
         $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
 
-        $this->projectRepository->update($project->id,$saveData);
+        $this->projectRepository->update($project->id, $saveData);
 
         // Save Files
         if ($request->hasFile('images')) {
@@ -165,9 +170,8 @@ class ProjectController extends Controller
      * Remove the specified resource from storage.
      *
      * @param string $locale
-     * @param \App\Models\Category $category
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Project $project
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(string $locale, Project $project)
     {

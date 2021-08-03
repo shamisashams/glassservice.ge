@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Models\Translations\ProductTranslation;
 use App\Traits\ScopeFilter;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 
 /**
@@ -19,12 +21,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $category_id
  * @property string $slug
  * @property int|null $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $deleted_at
  * @property-read ProductTranslation|null $translation
  * @property-read Category|null $category
- * @property-read \Illuminate\Database\Eloquent\Collection|ProductTranslation[] $translations
+ * @property-read Collection|ProductTranslation[] $translations
  * @property-read int|null $translations_count
  * @method static \Illuminate\Database\Eloquent\Builder|Product listsTranslations(string $translationField)
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
@@ -64,7 +66,6 @@ class Product extends Model
     protected $fillable = [
         'category_id',
         'slug',
-        'position',
         'status',
     ];
 
@@ -101,7 +102,7 @@ class Product extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function category(): BelongsTo
     {
@@ -109,7 +110,7 @@ class Product extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     public function files(): MorphMany
     {

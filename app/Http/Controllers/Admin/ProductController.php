@@ -17,24 +17,30 @@ use App\Models\Product;
 use App\Models\Translations\CategoryTranslation;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ProductRepositoryInterface;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
+use ReflectionException;
 
 class ProductController extends Controller
 {
     /**
-     * @var \App\Repositories\ProductRepositoryInterface
+     * @var ProductRepositoryInterface
      */
     private $productRepository;
 
     /**
-     * @var \App\Repositories\CategoryRepositoryInterface
+     * @var CategoryRepositoryInterface
      */
     private $categoryRepository;
 
     /**
-     * @param \App\Repositories\ProductRepositoryInterface $productRepository
-     * @param \App\Repositories\CategoryRepositoryInterface $categoryRepository
+     * @param ProductRepositoryInterface $productRepository
+     * @param CategoryRepositoryInterface $categoryRepository
      */
     public function __construct(
         ProductRepositoryInterface  $productRepository,
@@ -49,19 +55,19 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index(ProductRequest $request)
     {
         return view('admin.pages.product.index', [
-            'products' => $this->productRepository->getData($request, ['translations'])
+            'products' => $this->productRepository->getData($request, ['translations','category'])
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -81,10 +87,10 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\Admin\ProductRequest $request
+     * @param ProductRequest $request
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \ReflectionException
+     * @return Application|RedirectResponse|Redirector
+     * @throws ReflectionException
      */
     public function store(ProductRequest $request)
     {
@@ -106,9 +112,9 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param string $locale
-     * @param \App\Models\Product $product
+     * @param Product $product
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show(string $locale, Product $product)
     {
@@ -121,9 +127,9 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param string $locale
-     * @param \App\Models\Category $category
+     * @param Category $category
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function edit(string $locale, Product $product)
     {
@@ -141,11 +147,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\Admin\CategoryRequest $request
+     * @param ProductRequest $request
      * @param string $locale
-     * @param \App\Models\Category $category
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Product $product
+     * @return Application|RedirectResponse|Redirector
+     * @throws ReflectionException
      */
     public function update(ProductRequest $request, string $locale, Product $product)
     {
@@ -167,9 +173,8 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param string $locale
-     * @param \App\Models\Category $category
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Product $product
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(string $locale, Product $product)
     {
