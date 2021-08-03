@@ -16,7 +16,7 @@ interface ProjectRepositoryInterface
 {
 
     /**
-     * @param \App\Http\Requests\Admin\ProductRequest $request
+     * @param ProductRequest $request
      * @param array $with
      *
      * @return mixed
