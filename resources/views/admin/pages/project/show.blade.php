@@ -42,7 +42,7 @@
                             <td>@lang('admin.category'):</td>
                             <td>
                                 <a href="{{locale_route('category.show',$project->category_id)}}">
-                                    {{$project->category->title}}
+                                    {{$project->category ? $project->category->title : ""}}
                                 </a>
                             </td>
                         </tr>

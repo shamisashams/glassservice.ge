@@ -1,25 +1,20 @@
 <?php
 /**
- *  app/Http/Controllers/Admin/ProductController.php
+ *  app/Http/Controllers/Admin/ProjectController.php
  *
  * Date-Time: 30.07.21
  * Time: 10:37
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
  */
 
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Http\Requests\Admin\ProductRequest;
 use App\Http\Requests\Admin\ProjectRequest;
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\Project;
-use App\Models\Translations\CategoryTranslation;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ProjectRepositoryInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class ProjectController extends Controller
@@ -59,7 +54,6 @@ class ProjectController extends Controller
         return view('admin.pages.project.index', [
             'projects' => $this->projectRepository->getData($request, ['translations'])
         ]);
-        dd(1);
     }
 
     /**
@@ -102,7 +96,7 @@ class ProjectController extends Controller
             $project = $this->projectRepository->saveFiles($project->id, $request);
         }
 
-        return redirect(locale_route('project.index', $project->id))->with('success', __('admin.create_successfully'));
+        return redirect(locale_route('project.show', $project->id))->with('success', __('admin.create_successfully'));
 
     }
 

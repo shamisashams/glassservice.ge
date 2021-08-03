@@ -1,6 +1,6 @@
 <?php
 /**
- *  app/Repositories/Eloquent/ProductRepository.php
+ *  app/Repositories/Eloquent/ProjectRepository.php
  *
  * Date-Time: 30.07.21
  * Time: 10:36
@@ -12,7 +12,6 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Project;
 use App\Repositories\Eloquent\Base\BaseRepository;
-use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\ProjectRepositoryInterface;
 
 /**

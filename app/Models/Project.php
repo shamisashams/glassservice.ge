@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Translations\ProductTranslation;
 use App\Models\Translations\ProjectTranslation;
 use App\Traits\ScopeFilter;
 use Astrotomic\Translatable\Translatable;

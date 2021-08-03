@@ -48,7 +48,7 @@ Route::prefix('{locale?}')
 
                 // Project
                 Route::resource('project', ProjectController::class);
-                Route::get('product/{product}/destroy', [ProjectController::class, 'destroy'])->name('product.destroy');
+                Route::get('project/{project}/destroy', [ProjectController::class, 'destroy'])->name('project.destroy');
 
             });
         });
