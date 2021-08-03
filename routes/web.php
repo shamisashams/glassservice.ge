@@ -10,6 +10,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TranslationController;
@@ -49,6 +50,10 @@ Route::prefix('{locale?}')
                 // Project
                 Route::resource('project', ProjectController::class);
                 Route::get('project/{project}/destroy', [ProjectController::class, 'destroy'])->name('project.destroy');
+
+                // Page
+                Route::resource('page', PageController::class);
+                Route::get('page/{page}/destroy', [PageController::class, 'destroy'])->name('page.destroy');
 
             });
         });
