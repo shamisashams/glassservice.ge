@@ -14,10 +14,12 @@ use App\Repositories\Eloquent\Base\BaseRepository;
 use App\Repositories\Eloquent\Base\EloquentRepositoryInterface;
 use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\LanguageRepository;
+use App\Repositories\Eloquent\PageRepository;
 use App\Repositories\Eloquent\ProductRepository;
 use App\Repositories\Eloquent\ProjectRepository;
 use App\Repositories\Eloquent\TranslationRepository;
 use App\Repositories\LanguageRepositoryInterface;
+use App\Repositories\PageRepositoryInteface;
 use App\Repositories\ProductRepositoryInterface;
 use App\Repositories\ProjectRepositoryInterface;
 use App\Repositories\TranslationRepositoryInterface;
@@ -53,6 +55,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(ProjectRepositoryInterface::class, ProjectRepository::class);
-
+        $this->app->bind(PageRepositoryInteface::class, PageRepository::class);
     }
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
+use App\Models\Page;
 use App\Models\Product;
 use App\Repositories\CategoryRepositoryInterface;
+use App\Repositories\PageRepositoryInteface;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -18,26 +20,32 @@ use Illuminate\Support\Arr;
 
 class PageController extends Controller
 {
+
     /**
-     * @var ProductRepositoryInterface
+     * @var PageRepositoryInteface
      */
     private $pageRepository;
+
 
     /**
      * @param ProductRepositoryInterface $pageRepository
      */
     public function __construct(
-        ProductRepositoryInterface  $pageRepository
+        PageRepositoryInteface  $pageRepository
     )
     {
         $this->pageRepository = $pageRepository;
     }
 
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function index(Request $request)
     {
-        return view('admin.pages.product.index', [
-            'products' => $this->pageRepository->getData($request, ['translations'])
+        return view('admin.pages.page.index', [
+            'pages' => $this->pageRepository->getData($request, ['translations'])
         ]);
     }
 
@@ -108,16 +116,15 @@ class PageController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function edit(string $locale, Product $product)
+    public function edit(string $locale, Page $page)
     {
-        $url = locale_route('product.update', $product->id, false);
+        $url = locale_route('page.update', $page->id, false);
         $method = 'PUT';
 
-        return view('admin.pages.product.form', [
-            'product' => $product,
+        return view('admin.pages.page.form', [
+            'page' => $page,
             'url' => $url,
             'method' => $method,
-            'categories' => $this->categoryRepository->all(['*'], ['translations'])
         ]);
     }
 
@@ -126,24 +133,20 @@ class PageController extends Controller
      *
      * @param ProductRequest $request
      * @param string $locale
-     * @param Product $product
+     * @param Page $page
      * @return Application|RedirectResponse|Redirector
      * @throws ReflectionException
      */
-    public function update(ProductRequest $request, string $locale, Product $product)
+    public function update(Request $request, string $locale, Page $page)
     {
         $saveData = Arr::except($request->except('_token'), []);
         $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
 
-        $this->productRepository->update($product->id,$saveData);
 
-        // Save Files
-        if ($request->hasFile('images')) {
-            $this->productRepository->saveFiles($product->id, $request);
-        }
+        $this->pageRepository->update($page->id,$saveData);
 
 
-        return redirect(locale_route('product.show', $product->id))->with('success', __('admin.update_successfully'));
+        return redirect(locale_route('page.index', $page->id))->with('success', __('admin.update_successfully'));
     }
 
     /**
