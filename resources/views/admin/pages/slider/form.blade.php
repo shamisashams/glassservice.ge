@@ -30,17 +30,6 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                <div class="input-field col s12  mt-5">
-                                    {!! Form::text("youtube_url",$slider->youtube_url ?? '',['class' => 'validate '. $errors->has("youtube_url") ? '' : 'valid']) !!}
-                                    {!! Form::label("youtube_url",__('admin.youtube_url')) !!}
-                                    @error($locale.'.title')
-                                    <small class="errorTxt4">
-                                        <div class="error">
-                                            {{$message}}
-                                        </div>
-                                    </small>
-                                    @enderror
-                                </div>
                                 @foreach(config('translatable.locales') as $locale)
                                     <div id="lang-{{$locale}}" class="col s12 ">
                                         <div class="input-field ">
@@ -76,7 +65,17 @@
                         </div>
                         <div class="col s12 m6 8">
                             <div class="row">
-                                <div class="input-field"></div>
+                                <div class="input-field col s12">
+                                    {!! Form::text("youtube_url",$slider->youtube_url ?? '',['class' => 'validate '. $errors->has("youtube_url") ? '' : 'valid']) !!}
+                                    {!! Form::label("youtube_url",__('admin.youtube_url')) !!}
+                                    @error($locale.'.youtube_url')
+                                    <small class="errorTxt4">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
+                                </div>
                                 <div class="col s12 mt-3 mb-3">
                                     <label>
                                         <input type="checkbox" name="status"

@@ -13,13 +13,13 @@ namespace App\Repositories\Eloquent;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Repositories\Eloquent\Base\BaseRepository;
-use App\Repositories\SlideRepositoryInterface;
+use App\Repositories\SliderRepositoryInterface;
 
 /**
  * Class LanguageRepository
  * @package App\Repositories\Eloquent
  */
-class SlideRepository extends BaseRepository implements SlideRepositoryInterface
+class SliderRepository extends BaseRepository implements SliderRepositoryInterface
 {
     /**
      * @param \App\Models\Slider $model

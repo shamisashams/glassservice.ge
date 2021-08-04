@@ -6,22 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SliderRequest;
 
 use App\Models\Slider;
-use App\Repositories\SlideRepositoryInterface;
+use App\Repositories\SliderRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
-class SlideController extends Controller
+class SliderController extends Controller
 {
     /**
-     * @var \App\Repositories\SlideRepositoryInterface
+     * @var \App\Repositories\SliderRepositoryInterface
      */
     private $slideRepository;
 
     /**
-     * @param \App\Repositories\SlideRepositoryInterface $slideRepository
+     * @param \App\Repositories\SliderRepositoryInterface $slideRepository
      */
     public function __construct(
-        SlideRepositoryInterface  $slideRepository
+        SliderRepositoryInterface $slideRepository
     )
     {
         $this->slideRepository = $slideRepository;
