@@ -27,7 +27,7 @@ class RemoveSliderTranslationsTimestamps extends Migration
      */
     public function down()
     {
-        Schema::table('sliders', function (Blueprint $table) {
+        Schema::table('slider_translations', function (Blueprint $table) {
             $table->timestamps();
         });
     }

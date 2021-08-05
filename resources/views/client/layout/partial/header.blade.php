@@ -1,69 +1,89 @@
-<header class="header">
-    <div class="header_content flex wrapper">
-        <a href="{{locale_route('home.index')}}" class="logo">
-            <div class="logo_img"></div>
-        </a>
-        <div class="navbar">
-            <a href="{{locale_route('home.index')}}"
-               class="nav_link {{Request::route()->getName()  === 'home.index'? 'on' : ''}}">@lang('client.home')</a>
-            <div class="nav_link drop {{Request::route()->getName()  === 'catalog.index'? 'on' : ''}}">
-                <a href="" onclick="return false;" class="cat">@lang('client.category')</a>
-                <div class="dropdown">
-                    @foreach($gcategories as $category)
-                        <a href="{{locale_route('catalog.index',$category->slug)}}" class="link">
-                            {{$category->language(app()->getLocale())? $category->language(app()->getLocale())->title: $product->language()->title}}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-            <a href="{{locale_route('client.hnh.index')}}"
-               class="nav_link {{Request::route()->getName()  === 'client.hnh.index'? 'on' : ''}}">@lang('client.hnh')</a>
-            <a href="{{locale_route('client.video.index')}}"
-               class="nav_link {{Request::route()->getName()  === 'client.video.index'? 'on' : ''}}">@lang('client.videos')</a>
-            <a href="{{locale_route('client.project.index')}}"
-               class="nav_link {{Request::route()->getName()  === 'client.project.index'? 'on' : ''}}">@lang('client.projects')</a>
-            <a href="{{locale_route('portfolio.index')}}"
-               class="nav_link {{Request::route()->getName()  === 'portfolio.index'? 'on' : ''}}">
-                @lang('client.portfolios')
+@if(request()->routeIs("home.index"))
+    <header class="header">
+        <div class="wrapper flex">
+            <a href="index.html" class="logo">
+                <img src="/img/logo/1.png" alt=""/>
             </a>
-            <div class="nav_link drop {{Request::route()->getName()  === 'about.index'? 'on' : ''}}">
-                <a href="{{locale_route('about.index')}}" class="cat">@lang('client.about_us')</a>
-                <div class="dropdown">
-                    <a href="{{locale_route('timeline.index')}}" class="link">
-                        @lang('client.timeline')
-                    </a>
-                    <a href="{{locale_route('principle.index')}}" class="link">
-                        @lang('client.principle')
-                    </a>
-                    <a href="{{locale_route('client.certificate.index')}}" class="link">
-                        @lang('client.certificates')
-                    </a>
+            <div class="header_right flex">
+                <div class="navbar flex">
+                    <a class="nav_item active" href="index.html">მთავარი</a>
+                    <a class="nav_item" href="products.html">პროდუქტი</a>
+                    <a class="nav_item" href="services.html">სერვისი</a>
+                    <a class="nav_item" href="about.html">ჩვენ შესეხებ</a>
+                    <a class="nav_item" href="projects.html">პროექტები</a>
+                    <a class="nav_item" href="contact.html">კონტაქტი</a>
+                </div>
+                <div class="flex">
+                    <div class="search flex center">
+                        <input type="text" placeholder="Search here"/>
+                        <button class="search_icon">
+                            <img src="/img/icons/header/1.png" alt=""/>
+                        </button>
+                        <button class="close_search">
+                            <img src="/img/icons/header/2.png" alt=""/>
+                        </button>
+                    </div>
+                    <div class="languages">
+                        <div class="lang_on">
+                            <img src="/img/lang/georgia.png" alt=""/>
+                        </div>
+                        <div class="dropdown flex center">
+                            <a href="#" class="lang_option"
+                            ><img src="/img/lang/britain.png" alt=""
+                                /></a>
+                            <a href="#" class="lang_option"
+                            ><img src="/img/lang/russia.png" alt=""
+                                /></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a href="{{locale_route('contact.index')}}"
-               class="nav_link {{Request::route()->getName()  === 'contact.index'? 'on' : ''}}">
-                @lang('client.contact_us')
-            </a>
+            <button class="menu_button"></button>
         </div>
-        <div class="languages">
-            <div class="lang_on">
-                {{$localizations['current']['title']}}
-            </div>
-            @if(isset($localizations['data']))
-                <div class="dropdown">
-                    @foreach($localizations['data'] as $language)
-                        <a href="{{$language['url']}}" class="lang">
-                            {{$language['title']}}
-                        </a>
-
-                    @endforeach
+    </header>
+@else
+    <div class="all_showcases">
+        <header class="header">
+            <div class="wrapper flex">
+                <a href="index.html" class="logo">
+                    <img src="/img/logo/1.png" alt=""/>
+                </a>
+                <div class="header_right flex">
+                    <div class="navbar flex">
+                        <a class="nav_item active" href="index.html">მთავარი</a>
+                        <a class="nav_item" href="products.html">პროდუქტი</a>
+                        <a class="nav_item" href="services.html">სერვისი</a>
+                        <a class="nav_item" href="about.html">ჩვენ შესეხებ</a>
+                        <a class="nav_item" href="projects.html">პროექტები</a>
+                        <a class="nav_item" href="contact.html">კონტაქტი</a>
+                    </div>
+                    <div class="flex">
+                        <div class="search flex center">
+                            <input type="text" placeholder="Search here"/>
+                            <button class="search_icon">
+                                <img src="/img/icons/header/1.png" alt=""/>
+                            </button>
+                            <button class="close_search">
+                                <img src="/img/icons/header/2.png" alt=""/>
+                            </button>
+                        </div>
+                        <div class="languages">
+                            <div class="lang_on">
+                                <img src="/img/lang/georgia.png" alt=""/>
+                            </div>
+                            <div class="dropdown flex center">
+                                <a href="#" class="lang_option"
+                                ><img src="/img/lang/britain.png" alt=""
+                                    /></a>
+                                <a href="#" class="lang_option"
+                                ><img src="/img/lang/russia.png" alt=""
+                                    /></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            @endif
-        </div>
-        <div class="burger_menu"></div>
+                <button class="menu_button"></button>
+            </div>
+        </header>
     </div>
-    <button class="dark_light_mode_btn">
-        <img src="/client/img/icons/header/darkmode.svg" alt="" class="dark_light_img active">
-        <img src="/client/img/icons/header/lightmode.svg" alt=""  class="dark_light_img ">
-    </button>
-</header>
+@endif
