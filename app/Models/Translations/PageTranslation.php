@@ -11,7 +11,6 @@ class PageTranslation extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "page_id",
         'title',
         'description',
         "meta_title",

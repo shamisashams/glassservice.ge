@@ -11,10 +11,8 @@ namespace App\Repositories\Eloquent;
 
 
 use App\Models\Page;
-use App\Models\Translations\PageTranslation;
 use App\Repositories\Eloquent\Base\BaseRepository;
 use App\Repositories\PageRepositoryInteface;
-use League\Flysystem\Config;
 
 
 class PageRepository extends BaseRepository implements PageRepositoryInteface
@@ -27,16 +25,5 @@ class PageRepository extends BaseRepository implements PageRepositoryInteface
         parent::__construct($model);
     }
 
-    public function update(int $id, array $data = [])
-    {
-
-        $page=$this->findOrFail($id);
-        if (count($page->translations)==0){
-            $page->translations->create($data);
-        }else{
-            $page->translations->update($data);
-        }
-        return true;
-    }
 
 }

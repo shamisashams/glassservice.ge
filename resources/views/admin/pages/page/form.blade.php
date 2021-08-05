@@ -84,37 +84,6 @@
                                 @endforeach
                             </div>
                         </div>
-{{--                        <div class="col s12 m6 8">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="input-field col s12">--}}
-{{--                                    {!! Form::text('slug',$page->slug,['class' => 'validate '. $errors->has('slug') ? '' : 'valid']) !!}--}}
-{{--                                    {!! Form::label('slug',__('admin.slug')) !!}--}}
-{{--                                    @error('slug')--}}
-{{--                                    <small class="errorTxt4">--}}
-{{--                                        <div class="error">--}}
-{{--                                            {{$message}}--}}
-{{--                                        </div>--}}
-{{--                                    </small>--}}
-{{--                                    @enderror--}}
-{{--                                </div>--}}
-{{--                                <div class="input-field"></div>--}}
-{{--                                <div class="col s12 mt-3 mb-3">--}}
-{{--                                    <label>--}}
-{{--                                        <input type="checkbox" name="status"--}}
-{{--                                               value="true" {{$page->status ? 'checked' : ''}}>--}}
-{{--                                        <span>{{__('admin.status')}}</span>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <div class="input-images"></div>--}}
-{{--                                @if ($errors->has('images'))--}}
-{{--                                    <span class="help-block">--}}
-{{--                                            {{ $errors->first('images') }}--}}
-{{--                                        </span>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
                     <div class="row">
                         <div class="input-field col s12">

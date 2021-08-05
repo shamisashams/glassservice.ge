@@ -9,6 +9,7 @@
 namespace App\Repositories;
 
 
+use App\Http\Requests\Admin\PageRequest;
 use App\Http\Requests\Admin\ProductRequest;
 use Illuminate\Http\Request;
 
@@ -22,5 +23,5 @@ interface PageRepositoryInteface
      *
      * @return mixed
      */
-    public function getData(Request $request, array $with = []);
+    public function getData(PageRequest $request, array $with = []);
 }

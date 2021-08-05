@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PageRequest;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
-use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\PageRepositoryInteface;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
@@ -42,56 +42,14 @@ class PageController extends Controller
      * @param Request $request
      * @return Application|Factory|View
      */
-    public function index(Request $request)
+    public function index(PageRequest $request)
     {
         return view('admin.pages.page.index', [
             'pages' => $this->pageRepository->getData($request, ['translations'])
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function create()
-    {
-        $product = $this->productRepository->model;
 
-        $url = locale_route('product.store', [], false);
-        $method = 'POST';
-
-        return view('admin.pages.product.form', [
-            'product' => $product,
-            'url' => $url,
-            'method' => $method,
-            'categories' => $this->categoryRepository->all(['*'], ['translations'])
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param ProductRequest $request
-     *
-     * @return Application|RedirectResponse|Redirector
-     * @throws ReflectionException
-     */
-    public function store(ProductRequest $request)
-    {
-        $saveData = Arr::except($request->except('_token'), []);
-        $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
-
-        $product = $this->productRepository->create($saveData);
-
-        // Save Files
-        if ($request->hasFile('images')) {
-            $product = $this->productRepository->saveFiles($product->id, $request);
-        }
-
-        return redirect(locale_route('product.show', $product->id))->with('success', __('admin.create_successfully'));
-
-    }
 
     /**
      * Display the specified resource.
@@ -101,10 +59,10 @@ class PageController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function show(string $locale, Product $product)
+    public function show(string $locale, Page $page)
     {
-        return view('admin.pages.product.show', [
-            'product' => $product,
+        return view('admin.pages.page.show', [
+            'page' => $page,
         ]);
     }
 
@@ -137,30 +95,13 @@ class PageController extends Controller
      * @return Application|RedirectResponse|Redirector
      * @throws ReflectionException
      */
-    public function update(Request $request, string $locale, Page $page)
+    public function update(PageRequest $request, string $locale, Page $page)
     {
         $saveData = Arr::except($request->except('_token'), []);
-        $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
-
-
         $this->pageRepository->update($page->id,$saveData);
 
 
-        return redirect(locale_route('page.index', $page->id))->with('success', __('admin.update_successfully'));
+        return redirect(locale_route('page.show', $page->id))->with('success', __('admin.update_successfully'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param string $locale
-     * @param Product $product
-     * @return Application|RedirectResponse|Redirector
-     */
-    public function destroy(string $locale, Product $product)
-    {
-        if (!$this->productRepository->delete($product->id)) {
-            return redirect(locale_route('product.show', $product->id))->with('danger', __('admin.not_delete_message'));
-        }
-        return redirect(locale_route('product.index'))->with('success', __('admin.delete_message'));
-    }
 }
