@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
 
-Route::redirect('',config('translatable.fallback_locale'));
+Route::redirect('', config('translatable.fallback_locale'));
 Route::prefix('{locale?}')
     ->middleware(['setlocale'])
     ->group(function () {
@@ -58,44 +58,45 @@ Route::prefix('{locale?}')
             });
         });
 
+        //Home Page
+        Route::get('', function () {
+            return view("client.pages.home.index");
+        })->name('home.index');
+
+        //Contact Page
+        Route::get('/contact', function () {
+            return view("client.pages.contact.index");
+        })->name('contact.index');
+
+        //About Page
+        Route::get('/about', function () {
+            return view("client.pages.about.index");
+        })->name('about.index');
+
+        //Product Page
+        Route::get('/product', function () {
+            return view("client.pages.product.index");
+        })->name('product.index');
+        Route::get('/product/{product}', function () {
+            return view("client.pages.product_detail.index");
+        })->name('product_detail.index');
+
+        //Project Page
+        Route::get('/project', function () {
+            return view("client.pages.project.index");
+        })->name('project.index');
+        Route::get('/project/{project}', function () {
+            return view("client.pages.project_detail.index");
+        })->name('project_detail.index');
+
+        //Search Page
+        Route::get('/search', function () {
+            return view("client.pages.search.index");
+        })->name('search.index');
+
+        //Service Page
+        Route::get('/service', function () {
+            return view("client.pages.service.index");
+        })->name('service.index');
     });
-//Home Page
-Route::get('', function (){
-    return view("client.pages.home.index");
-})->name('home.index');
 
-//Contact Page
-Route::get('/contact', function (){
-    return view("client.pages.contact.index");
-})->name('contact.index');
-
-//About Page
-Route::get('/about', function (){
-    return view("client.pages.about.index");
-})->name('about.index');
-
-//Product Page
-Route::get('/product', function (){
-    return view("client.pages.product.index");
-})->name('product.index');
-Route::get('/product/{product}', function (){
-    return view("client.pages.product_detail.index");
-})->name('product_detail.index');
-
-//Project Page
-Route::get('/project', function (){
-    return view("client.pages.project.index");
-})->name('project.index');
-Route::get('/project/{project}', function (){
-    return view("client.pages.project_detail.index");
-})->name('project_detail.index');
-
-//Search Page
-Route::get('/search', function (){
-    return view("client.pages.search.index");
-})->name('search.index');
-
-//Service Page
-Route::get('/service', function (){
-    return view("client.pages.service.index");
-})->name('service.index');
