@@ -10,6 +10,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SliderController;
@@ -54,6 +55,10 @@ Route::prefix('{locale?}')
                 // Slider
                 Route::resource('slider', SliderController::class);
                 Route::get('slider/{slider}/destroy', [SliderController::class, 'destroy'])->name('slider.destroy');
+
+                // Page
+                Route::resource('page', PageController::class);
+                Route::get('page/{page}/destroy', [PageController::class, 'destroy'])->name('page.destroy');
 
             });
         });
