@@ -36,6 +36,13 @@
             "slug": "language"
         },
         {
+            "url": "setting.index",
+            "name": "setting",
+            "i18n": "setting",
+            "icon": "language",
+            "slug": "setting"
+        },
+        {
             "url": "translation.index",
             "name": "translation",
             "i18n": "translation",

@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
@@ -54,6 +55,10 @@ Route::prefix('{locale?}')
                 // Slider
                 Route::resource('slider', SliderController::class);
                 Route::get('slider/{slider}/destroy', [SliderController::class, 'destroy'])->name('slider.destroy');
+
+                // Setting
+                Route::resource('setting', SettingController::class);
+                Route::get('setting/{setting}/destroy', [SettingController::class, 'destroy'])->name('setting.destroy');
 
             });
         });

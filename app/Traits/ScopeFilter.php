@@ -173,4 +173,16 @@ trait ScopeFilter
             return $query->where('title', 'like', '%' . $title . '%');
         });
     }
+
+    /**
+     * @param $query
+     * @param $value
+     * @return mixed
+     */
+    public function scopeValueTranslation($query, $value)
+    {
+        return $query->whereHas('translations', function ($query) use ($value) {
+            return $query->where('value', 'like', '%' . $value . '%');
+        });
+    }
 }
