@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('ckeditor/image_upload', [CKEditorController::class, 'upload'])->name('upload');
@@ -100,8 +101,6 @@ Route::prefix('{locale?}')
         })->name('search.index');
 
         //Service Page
-        Route::get('/service', function () {
-            return view("client.pages.service.index");
-        })->name('service.index');
+        Route::get('/service', [ServiceController::class, "index"])->name('service.index');
     });
 

@@ -1,16 +1,15 @@
 @extends('client.layout.site')
 @section('subhead')
-    <title>@lang('client.home_meta_title')</title>
+    <title>{{ $service->meta_title }}</title>
     <meta name="description"
-          content="@lang('client.home_meta_description')">
+          content="{{ $service->meta_description }}">
 @endsection
 
 @section('wrapper')
     <div class="services_page wrapper">
-        <div class="main_title">სერვისი</div>
+        <div class="main_title">{{ $service->title }}</div>
         <div class="paragraph">
-            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და ტიპოგრაფიული
-            ნაწარმის შემქმნელებს,
+            {!! $service->description !!}
         </div>
 
         <div class="service_grid">
