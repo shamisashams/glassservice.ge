@@ -5,10 +5,9 @@ namespace App\Models\Translations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PageTranslation extends Model
+class PageTranslation extends BaseTranslationModel
 {
     use HasFactory;
-    public $timestamps = false;
 
     protected $fillable = [
         'title',

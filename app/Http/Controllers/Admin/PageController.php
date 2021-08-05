@@ -4,17 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PageRequest;
-use App\Http\Requests\Admin\ProductRequest;
-use App\Models\Category;
 use App\Models\Page;
-use App\Models\Product;
-use App\Repositories\PageRepositoryInteface;
-use App\Repositories\ProductRepositoryInterface;
+use App\Repositories\PageRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 
@@ -22,16 +17,16 @@ class PageController extends Controller
 {
 
     /**
-     * @var PageRepositoryInteface
+     * @var PageRepositoryInterface
      */
     private $pageRepository;
 
 
     /**
-     * @param ProductRepositoryInterface $pageRepository
+     * @param PageRepositoryInterface $pageRepository
      */
     public function __construct(
-        PageRepositoryInteface  $pageRepository
+        PageRepositoryInterface  $pageRepository
     )
     {
         $this->pageRepository = $pageRepository;
@@ -39,7 +34,7 @@ class PageController extends Controller
 
 
     /**
-     * @param Request $request
+     * @param PageRequest $request
      * @return Application|Factory|View
      */
     public function index(PageRequest $request)
@@ -50,13 +45,11 @@ class PageController extends Controller
     }
 
 
-
     /**
      * Display the specified resource.
      *
      * @param string $locale
-     * @param Product $product
-     *
+     * @param Page $page
      * @return Application|Factory|View
      */
     public function show(string $locale, Page $page)
@@ -70,8 +63,7 @@ class PageController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param string $locale
-     * @param Category $category
-     *
+     * @param Page $page
      * @return Application|Factory|View
      */
     public function edit(string $locale, Page $page)
@@ -89,11 +81,10 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param ProductRequest $request
+     * @param PageRequest $request
      * @param string $locale
      * @param Page $page
      * @return Application|RedirectResponse|Redirector
-     * @throws ReflectionException
      */
     public function update(PageRequest $request, string $locale, Page $page)
     {

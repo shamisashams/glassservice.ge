@@ -12,10 +12,10 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Page;
 use App\Repositories\Eloquent\Base\BaseRepository;
-use App\Repositories\PageRepositoryInteface;
+use App\Repositories\PageRepositoryInterface;
 
 
-class PageRepository extends BaseRepository implements PageRepositoryInteface
+class PageRepository extends BaseRepository implements PageRepositoryInterface
 {
     /**
      * @param Page $model

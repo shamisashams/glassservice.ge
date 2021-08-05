@@ -36,13 +36,7 @@ class PageRequest extends FormRequest
     public function rules(): array
     {
         // Check if method is get,fields are nullable.
-        if ($this->method() === 'GET') {
-            return [];
-        }
+        return [];
 
-        return [
-            config('translatable.fallback_locale') . '.title' => 'required|max:255',
-            config('translatable.fallback_locale') . '.description' => 'required|max:1024',
-        ];
     }
 }

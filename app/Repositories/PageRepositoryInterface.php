@@ -10,15 +10,13 @@ namespace App\Repositories;
 
 
 use App\Http\Requests\Admin\PageRequest;
-use App\Http\Requests\Admin\ProductRequest;
-use Illuminate\Http\Request;
 
 
-interface PageRepositoryInteface
+interface PageRepositoryInterface
 {
 
     /**
-     * @param ProductRequest $request
+     * @param PageRequest $request
      * @param array $with
      *
      * @return mixed
