@@ -61,6 +61,11 @@ Route::prefix('{locale?}')
                 Route::resource('page', PageController::class);
                 Route::get('page/{page}/destroy', [PageController::class, 'destroy'])->name('page.destroy');
 
+
+                // Service
+                Route::resource('service', \App\Http\Controllers\Admin\ServiceController::class);
+                Route::get('service/{service}/destroy', [\App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('service.destroy');
+
             });
         });
 
@@ -101,6 +106,6 @@ Route::prefix('{locale?}')
         })->name('search.index');
 
         //Service Page
-        Route::get('/service', [ServiceController::class, "index"])->name('service.index');
+        Route::get('/service', [ServiceController::class, "index"])->name('client.service.index');
     });
 

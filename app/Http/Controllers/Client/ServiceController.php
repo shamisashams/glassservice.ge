@@ -1,17 +1,26 @@
 <?php
-
+/**
+ *  app/Http/Controllers/Client/ServiceController.php
+ *
+ * Date-Time: 06.08.21
+ * Time: 15:25
+ * @author Vito Makhatadze <vitomakhatadze@gmail.com>
+ */
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
-use Illuminate\Http\Request;
+use App\Models\Service;
 
 class ServiceController extends Controller
 {
     public function index() {
-        $service = Page::where("key", "service")->firstOrFail();
-        return view("client.pages.service.index", [
-            "service" => $service
+        $page = Page::where('key', 'service')->firstOrFail();
+        $services = Service::where('status',true)->with(['file','translations'])->get();
+
+        return view('client.pages.service.index', [
+            'services' => $services,
+            'page' => $page
         ]);
     }
 }
