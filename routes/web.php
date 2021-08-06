@@ -94,7 +94,7 @@ Route::prefix('{locale?}')
         //Product Page
         Route::get('/product', function () {
             return view("client.pages.product.index");
-        })->name('product.index');
+        })->name('client.product.index');
         Route::get('/product/{product}', function () {
             return view("client.pages.product_detail.index");
         })->name('product_detail.index');
@@ -102,7 +102,7 @@ Route::prefix('{locale?}')
         //Project Page
         Route::get('/project', function () {
             return view("client.pages.project.index");
-        })->name('project.index');
+        })->name('client.project.index');
         Route::get('/project/{project}', function () {
             return view("client.pages.project_detail.index");
         })->name('project_detail.index');
