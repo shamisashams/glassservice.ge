@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
@@ -59,6 +60,10 @@ Route::prefix('{locale?}')
                 // Page
                 Route::resource('page', PageController::class);
                 Route::get('page/{page}/destroy', [PageController::class, 'destroy'])->name('page.destroy');
+
+                // Setting
+                Route::resource('setting', SettingController::class);
+                Route::get('setting/{setting}/destroy', [SettingController::class, 'destroy'])->name('setting.destroy');
 
             });
         });
