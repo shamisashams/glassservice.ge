@@ -5,7 +5,6 @@
 namespace App\Repositories;
 
 
-use App\Http\Requests\Admin\PageRequest;
 use App\Http\Requests\Admin\SettingRequest;
 
 

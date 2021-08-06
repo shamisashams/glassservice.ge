@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
 use App\Models\Setting;
 use App\Repositories\SettingRepositoryInterface;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 
 class SettingController extends Controller
@@ -29,7 +34,7 @@ class SettingController extends Controller
 
     /**
      * @param SettingRequest $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index(SettingRequest $request)
     {
@@ -42,7 +47,7 @@ class SettingController extends Controller
     /**
      * @param string $locale
      * @param Setting $setting
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show(string $locale, Setting $setting)
     {
@@ -55,7 +60,7 @@ class SettingController extends Controller
     /**
      * @param string $locale
      * @param Setting $setting
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function edit(string $locale, Setting $setting)
     {
@@ -74,7 +79,7 @@ class SettingController extends Controller
      * @param SettingRequest $request
      * @param string $locale
      * @param Setting $setting
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(SettingRequest $request, string $locale, Setting $setting)
     {
