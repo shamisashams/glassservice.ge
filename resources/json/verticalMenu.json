@@ -22,6 +22,13 @@
             "slug": "project"
         },
         {
+            "url": "service.index",
+            "name": "service",
+            "i18n": "service",
+            "icon": "language",
+            "slug": "service"
+        },
+        {
             "url": "page.index",
             "name": "page",
             "i18n": "page",
