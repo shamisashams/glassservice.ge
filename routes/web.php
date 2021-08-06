@@ -31,9 +31,11 @@ Route::prefix('{locale?}')
             Route::post('login', [LoginController::class, 'login'])->name('login');
 
 
+
             Route::middleware('auth')->group(function () {
                 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+                Route::redirect('','/admin/product',);
 
                 // Language
                 Route::resource('language', LanguageController::class);
