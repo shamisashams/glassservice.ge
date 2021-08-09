@@ -91,10 +91,10 @@ Route::prefix('{locale?}')
         })->name('client.about.index');
 
         // Product Page
-        Route::get('/product', [ClientProductController::class, 'index'])->name('client.product.index');
-        Route::get('/product/{product}', [ClientProductController::class, 'show'])->name('client.product.show');
+        Route::get('/product', [\App\Http\Controllers\Client\ProductController::class, 'index'])->name('client.product.index');
+        Route::get('/product/{product}', [\App\Http\Controllers\Client\ProductController::class, 'show'])->name('client.product.show');
 
-        //Project Page
+        // Project Page
         Route::get('/project', function () {
             return view("client.pages.project.index");
         })->name('client.project.index');
@@ -102,12 +102,12 @@ Route::prefix('{locale?}')
             return view('client.pages.project_detail.index');
         })->name('client.project_detail.index');
 
-        //Search Page
+        // Search Page
         Route::get('/search', function () {
             return view('client.pages.search.index');
         })->name('client.search.index');
 
-        //Service Page
+        // Service Page
         Route::get('/service', [ServiceController::class, "index"])->name('client.service.index');
     });
 
