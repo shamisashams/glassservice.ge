@@ -12,6 +12,7 @@
             <div class="col s12 m7">
                 <div class="display-flex media">
                     <div class="media-body">
+                    <div class="media-body">
                         <h6 class="media-heading">
                             <span class="users-view-name">{{$category->title}} </span>
                         </h6>
