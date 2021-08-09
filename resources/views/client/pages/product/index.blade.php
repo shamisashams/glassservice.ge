@@ -1,168 +1,51 @@
 @extends('client.layout.site')
-@section('subhead')
-    <title>@lang('client.home_meta_title')</title>
-    <meta name="description"
-          content="@lang('client.home_meta_description')">
-@endsection
 
+@section("meta_title", $productPage->meta_title)
+@section("meta_description", $productPage->meta_description)
 @section('wrapper')
     <div class="product_page wrapper">
         <div class="head flex">
-            <div class="main_title">პროდუქცია</div>
+            <div class="main_title">{{__('client.products')}}</div>
             <form class="filters flex">
-                <input
-                    type="radio"
-                    class="product_filter_page"
-                    name="product_filter_page"
-                    id="pdfp1"
-                />
-                <label class="title" for="pdfp1">საშხაპე კაბინა</label>
-                <input
-                    type="radio"
-                    class="product_filter_page"
-                    name="product_filter_page"
-                    id="pdfp2"
-                />
-                <label class="title" for="pdfp2">მინაპაკეტი</label>
-                <input
-                    type="radio"
-                    class="product_filter_page"
-                    name="product_filter_page"
-                    id="pdfp3"
-                />
-                <label class="title" for="pdfp3">მინა</label>
-                <input
-                    type="radio"
-                    class="product_filter_page"
-                    name="product_filter_page"
-                    id="pdfp4"
-                />
-                <label class="title" for="pdfp4">სარკე</label>
+                @foreach($categories as $category)
+                    <a href="{{locale_route('client.product.index',['category' => $category->id])}}">
+                        <input
+                            type="radio"
+                            class="product_filter_page"
+                            name="category"
+                            id="pdfp3"
+                        />
+                        <label class="title" for="pdfp1">{{$category->title}}</label>
+                    </a>
+                @endforeach
             </form>
         </div>
         <div class="product_p_content active">
-            <div class="title">საშხაპე კაბინა</div>
+            <div class="title">{{$productPage->title}}</div>
             <div class="paragraph">
-                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და ტიპოგრაფიული
-                ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად მიახლოებული შაბლონი
-                წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა, როდესაც დიზაინის
-                შესრულებისას
+                {!! $productPage->description !!}
             </div>
             <div class="slider">
-                <div class="ppage_slider flex">
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
+                @foreach($products as $product)
+                    <div class="ppage_slider flex">
+                        <div class="item">
+                            <div class="img">
+                                <img src="{{url($product->file ? $product->file->file_url : '')}}" alt="" />
+                            </div>
+                            <div class="title">{{$product->title}}</div>
+                            <div class="paragraph">
+                                {!! $product->short_description !!}
+                            </div>
+                            <a href="{{locale_route('client.product.show',$product->slug)}}">
+                                <button class="main_button">
+                                    {{__('client.view_more')}}
+                                    <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
+                                </button>
+                            </a>
                         </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
                     </div>
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
-                        </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
-                        </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
-                        </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
-                        </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
-                        </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <div class="img">
-                            <img src="/img/products/6.png" alt="" />
-                        </div>
-                        <div class="title">პროდუქტის დასახელება</div>
-                        <div class="paragraph">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
-                        </div>
-                        <a href="product-detail.html">
-                            <button class="main_button">
-                                გაიგე მეტი
-                                <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
-                            </button>
-                        </a>
-                    </div>
-                </div>
+
+                @endforeach
                 <button class="arrow flex center" id="pp_prev">
                     <img src="/img/icons/arrows/prev.svg" alt="" />
                 </button>
@@ -171,9 +54,6 @@
                 </button>
             </div>
         </div>
-        <div class="product_p_content">მინაპაკეტი</div>
-        <div class="product_p_content">მინა</div>
-        <div class="product_p_content">სარკე</div>
     </div>
 
 @endsection

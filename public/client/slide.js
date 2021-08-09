@@ -88,13 +88,51 @@ $(".home_about_slider").slick({
     autoplay: false,
     variableWidth: true,
 });
+// $('.ppage_slider').each(function() {
+//     var slickInduvidual = $(this);
+//     console.log(slickInduvidual.next().find('.pp_prev'));
+//     slickInduvidual.slick({
+//         slidesToShow: 4,
+//         slidesToScroll: 4,
+//         draggable: true,
+//         arrows: true,
+//         prevArrow: slickInduvidual.siblings('.pp_prev'),
+//         nextArrow: slickInduvidual.siblings('.pp_next'),
+//         dots: true,
+//         speed: 500,
+//         infinite: true,
+//         touchThreshold: 100,
+//         autoplay: false,
+//         variableWidth: true,
+//         responsive: [
+//             {
+//                 breakpoint: 1300,
+//                 settings: {
+//                     slidesToShow: 3,
+//                 },
+//             },
+//             {
+//                 breakpoint: 1000,
+//                 settings: {
+//                     slidesToShow: 2,
+//                 },
+//             },
+//             {
+//                 breakpoint: 400,
+//                 settings: {
+//                     slidesToShow: 1,
+//                 },
+//             },
+//         ],
+//     });
+// });
 $(".ppage_slider").slick({
     slidesToShow: 4,
     slidesToScroll: 4,
     draggable: true,
     arrows: true,
-    prevArrow: "#pp_prev",
-    nextArrow: "#pp_next",
+    prevArrow: ".pp_prev",
+    nextArrow: ".pp_next",
     dots: true,
     speed: 500,
     infinite: true,

@@ -10,18 +10,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\Translations\CategoryTranslation;
 use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ProductRepositoryInterface;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Arr;
 use ReflectionException;
@@ -60,7 +57,7 @@ class ProductController extends Controller
     public function index(ProductRequest $request)
     {
         return view('admin.pages.product.index', [
-            'products' => $this->productRepository->getData($request, ['translations','category'])
+            'products' => $this->productRepository->getData($request, ['translations', 'category'])
         ]);
     }
 
@@ -158,12 +155,9 @@ class ProductController extends Controller
         $saveData = Arr::except($request->except('_token'), []);
         $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
 
-        $this->productRepository->update($product->id,$saveData);
+        $this->productRepository->update($product->id, $saveData);
 
-        // Save Files
-        if ($request->hasFile('images')) {
-            $this->productRepository->saveFiles($product->id, $request);
-        }
+        $this->productRepository->saveFiles($product->id, $request);
 
 
         return redirect(locale_route('product.show', $product->id))->with('success', __('admin.update_successfully'));

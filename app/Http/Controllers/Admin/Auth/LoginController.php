@@ -59,7 +59,7 @@ class LoginController extends Controller
             return back()->with('danger','Email or Password is incorrect!');
         }
 
-        return redirect('admin/');
+        return redirect('/ge/admin/category');
     }
 
 

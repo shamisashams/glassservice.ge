@@ -6,8 +6,8 @@ const projectContentHome = document.querySelectorAll(".project_content_home");
 const viewVideo = document.querySelectorAll(".view_video");
 const videoPopup = document.querySelector(".the_video_popup");
 const closeVideo = document.querySelector(".close_vid_popup");
-const productFilterPage = document.querySelectorAll(".product_filter_page");
-const productPcontent = document.querySelectorAll(".product_p_content");
+// const productFilterPage = document.querySelectorAll(".product_filter_page");
+// const productPcontent = document.querySelectorAll(".product_p_content");
 const detImgFilter = document.querySelectorAll(".detail_img_filter");
 const largeImage = document.querySelectorAll(".large_image");
 const projectPFilter = document.querySelectorAll(".project_p_filter");
@@ -48,18 +48,20 @@ if ((viewVideo, closeVideo)) {
 }
 
 // product filter on p page
-productFilterPage.forEach((el, i) => {
-    el.addEventListener("click", () => {
-        productFilterPage.forEach((el) => {
-            el.classList.remove("active");
-        });
-        productPcontent.forEach((el) => {
-            el.classList.remove("active");
-        });
-        productFilterPage[i].classList.add("active");
-        productPcontent[i].classList.add("active");
-    });
-});
+// productFilterPage.forEach((el, i) => {
+//     el.addEventListener("click", () => {
+//
+//         productFilterPage.forEach((el) => {
+//             el.classList.remove("active");
+//         });
+//         productPcontent.forEach((el) => {
+//             el.classList.remove("active");
+//         });
+//         productFilterPage[i].classList.add("active");
+//         productPcontent[i].classList.add("active");
+//
+//     });
+// });
 
 // detail images filter slider
 detImgFilter.forEach((el, i) => {
