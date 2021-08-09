@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 
 /**
@@ -52,7 +54,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Query\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Product withoutTrashed()
  */
-class Product extends Model
+class Product extends Model implements Searchable
 {
     use SoftDeletes, Translatable, HasFactory, ScopeFilter;
 
@@ -100,6 +102,17 @@ class Product extends Model
                 'scopeMethod' => 'titleTranslation'
             ]
         ];
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        $url = locale_route('client.product.show', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->title,
+            $url
+        );
     }
 
     /**

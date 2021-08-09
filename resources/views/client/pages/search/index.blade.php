@@ -11,7 +11,7 @@
         <div class="flex center searched">
             <img src="/img/icons/other/1.png" alt="" />
             <div class="paragraph">
-                <span class="paragraph dark">"საძიებო სიტყვა"</span> ნაპოვნია 3 შედეგი
+                <span class="paragraph dark">"{{}}"</span> {{__}} 3 შედეგი
             </div>
         </div>
         <div class="found_items">
