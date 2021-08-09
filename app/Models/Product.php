@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
@@ -116,4 +117,13 @@ class Product extends Model
     {
         return $this->morphMany(File::class, 'fileable');
     }
+
+    /**
+     * @return MorphOne
+     */
+    public function file(): MorphOne
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
+
 }

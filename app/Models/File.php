@@ -59,4 +59,14 @@ class File extends Model
     {
         return $this->morphTo();
     }
+
+    /**
+     * Get the user's file full url.
+     *
+     * @return string
+     */
+    public function getFileUrlAttribute(): string
+    {
+        return $this->path . '/' . $this->title;
+    }
 }
