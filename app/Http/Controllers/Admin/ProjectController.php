@@ -58,7 +58,7 @@ class ProjectController extends Controller
     {
 
         return view('admin.pages.project.index', [
-            'projects' => $this->projectRepository->getData($request, ['translations','category'])
+            'projects' => $this->projectRepository->getData($request, ['translations', 'category'])
         ]);
     }
 
@@ -157,10 +157,8 @@ class ProjectController extends Controller
 
         $this->projectRepository->update($project->id, $saveData);
 
-        // Save Files
-        if ($request->hasFile('images')) {
-            $this->projectRepository->saveFiles($project->id, $request);
-        }
+
+        $this->projectRepository->saveFiles($project->id, $request);
 
 
         return redirect(locale_route('project.show', $project->id))->with('success', __('admin.update_successfully'));

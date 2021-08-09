@@ -13,6 +13,7 @@ use App\Traits\ScopeFilter;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -56,6 +57,7 @@ class Category extends Model
 {
     use SoftDeletes, Translatable, HasFactory, ScopeFilter;
 
+
     /**
      * @var string
      */
@@ -80,6 +82,22 @@ class Category extends Model
         'description'
     ];
 
+//    public function scopeFilter($query, array $filters)
+//    {
+////        $category = $filters["category"];
+//        $query->when($filters["category"] ?? false, function () use ($query) {
+////            dd($category->get());
+////            dd($query);
+//            return $query->where("id", $filters["category"])->get();
+////            return $query->whereHas("category", function () use ($query, $category) {
+////                return $query->where("slug", $category);
+////            }
+////            );
+//        }
+//        );
+//
+//
+//    }
 
     public function getFilterScopes(): array
     {
@@ -97,5 +115,9 @@ class Category extends Model
                 'scopeMethod' => 'titleTranslation'
             ]
         ];
+    }
+    public function product(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

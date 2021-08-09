@@ -796,10 +796,10 @@ svg {
     top: 220px;
     background: rgba(255, 255, 255, 0.61);
 }
-.product_page .slider #pp_prev {
+.product_page .slider .pp_prev {
     left: -18px;
 }
-.product_page .slider #pp_next {
+.product_page .slider .pp_next {
     right: -18px;
 }
 .product_page .ppage_slider .slick-slide {

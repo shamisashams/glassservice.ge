@@ -1,4 +1,4 @@
-@if(request()->routeIs("home.index"))
+@if(request()->routeIs("client.home.index"))
     <header class="header">
         <div class="wrapper flex">
             <a href="index.html" class="logo">
@@ -6,12 +6,12 @@
             </a>
             <div class="header_right flex">
                 <div class="navbar flex">
-                    <a class="nav_item active" href="index.html">მთავარი</a>
-                    <a class="nav_item" href="products.html">პროდუქტი</a>
-                    <a class="nav_item" href="services.html">სერვისი</a>
-                    <a class="nav_item" href="about.html">ჩვენ შესეხებ</a>
-                    <a class="nav_item" href="projects.html">პროექტები</a>
-                    <a class="nav_item" href="contact.html">კონტაქტი</a>
+                    <a class="nav_item active" href="{{ route("client.home.index") }}">მთავარი</a>
+                    <a class="nav_item" href="{{ route("client.product.index") }}">პროდუქტი</a>
+                    <a class="nav_item" href="{{ route("client.service.index") }}">სერვისი</a>
+                    <a class="nav_item" href="{{ route("client.about.index") }}">ჩვენ შესეხებ</a>
+                    <a class="nav_item" href="{{ route("client.project.index") }}">პროექტები</a>
+                    <a class="nav_item" href="{{ route("client.contact.index") }}">კონტაქტი</a>
                 </div>
                 <div class="flex">
                     <div class="search flex center">
@@ -50,12 +50,12 @@
                 </a>
                 <div class="header_right flex">
                     <div class="navbar flex">
-                        <a class="nav_item active" href="index.html">მთავარი</a>
-                        <a class="nav_item" href="products.html">პროდუქტი</a>
-                        <a class="nav_item" href="services.html">სერვისი</a>
-                        <a class="nav_item" href="about.html">ჩვენ შესეხებ</a>
-                        <a class="nav_item" href="projects.html">პროექტები</a>
-                        <a class="nav_item" href="contact.html">კონტაქტი</a>
+                        <a class="nav_item active" href="{{ route("client.home.index") }}">მთავარი</a>
+                        <a class="nav_item" href="{{ route("client.product.index") }}">პროდუქტი</a>
+                        <a class="nav_item" href="{{ route("client.service.index") }}">სერვისი</a>
+                        <a class="nav_item" href="{{ route("client.about.index") }}">ჩვენ შესეხებ</a>
+                        <a class="nav_item" href="{{ route("client.project.index") }}">პროექტები</a>
+                        <a class="nav_item" href="{{ route("client.contact.index") }}">კონტაქტი</a>
                     </div>
                     <div class="flex">
                         <div class="search flex center">

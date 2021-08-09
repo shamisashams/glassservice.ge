@@ -51,10 +51,6 @@ class Page extends Model
     }
 
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
 
 
     public function files(): MorphMany

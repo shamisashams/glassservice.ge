@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
+use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\CKEditorController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,42 +67,38 @@ Route::prefix('{locale?}')
         //Home Page
         Route::get('', function () {
             return view("client.pages.home.index");
-        })->name('home.index');
+        })->name('client.home.index');
 
         //Contact Page
         Route::get('/contact', function () {
             return view("client.pages.contact.index");
-        })->name('contact.index');
+        })->name('client.contact.index');
 
         //About Page
         Route::get('/about', function () {
             return view("client.pages.about.index");
-        })->name('about.index');
+        })->name('client.about.index');
 
         //Product Page
-        Route::get('/product', function () {
-            return view("client.pages.product.index");
-        })->name('product.index');
-        Route::get('/product/{product}', function () {
-            return view("client.pages.product_detail.index");
-        })->name('product_detail.index');
+        Route::get('/product/{category?}', [ClientProductController::class, "index"])->name('client.product.index');
+        Route::get('/product/show/{product}', [ClientProductController::class, "show"])->name('client.product_detail.index');
 
         //Project Page
         Route::get('/project', function () {
             return view("client.pages.project.index");
-        })->name('project.index');
+        })->name('client.project.index');
         Route::get('/project/{project}', function () {
             return view("client.pages.project_detail.index");
-        })->name('project_detail.index');
+        })->name('client.project_detail.index');
 
         //Search Page
         Route::get('/search', function () {
             return view("client.pages.search.index");
-        })->name('search.index');
+        })->name('client.search.index');
 
         //Service Page
         Route::get('/service', function () {
             return view("client.pages.service.index");
-        })->name('service.index');
+        })->name('client.service.index');
     });
 

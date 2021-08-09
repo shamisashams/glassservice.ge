@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SliderRequest;
-
 use App\Models\Slider;
 use App\Repositories\SliderRepositoryInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class SliderController extends Controller
@@ -131,12 +129,9 @@ class SliderController extends Controller
         $saveData = Arr::except($request->except('_token'), []);
         $saveData['status'] = isset($saveData['status']) && (bool)$saveData['status'];
 
-        $this->slideRepository->update($slider->id,$saveData);
+        $this->slideRepository->update($slider->id, $saveData);
 
-        // Save Files
-        if ($request->hasFile('images')) {
-            $this->slideRepository->saveFiles($slider->id, $request);
-        }
+        $this->slideRepository->saveFiles($slider->id, $request);
 
 
         return redirect(locale_route('slider.show', $slider->id))->with('success', __('admin.update_successfully'));
