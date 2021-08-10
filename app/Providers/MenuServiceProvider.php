@@ -44,5 +44,6 @@ class MenuServiceProvider extends ServiceProvider
 
 
         require_once(app()->basePath().'/app/Helpers/locale_route.php');
+        require_once(app()->basePath().'/app/Helpers/get_url.php');
     }
 }

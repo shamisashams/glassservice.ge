@@ -25,15 +25,17 @@
                     </div>
                     <div class="languages">
                         <div class="lang_on">
-                            <img src="/img/lang/georgia.png" alt=""/>
+
+                            <img src="/img/lang/{{app()->getLocale()}}.png" alt="ff"/>
                         </div>
                         <div class="dropdown flex center">
-                            <a href="#" class="lang_option"
-                            ><img src="/img/lang/britain.png" alt=""
-                                /></a>
-                            <a href="#" class="lang_option"
-                            ><img src="/img/lang/russia.png" alt=""
-                                /></a>
+                            @foreach(config('translatable.locales') as $locale)
+                                @if(app()->getLocale() != $locale)
+                                    <a href="{{ get_url($locale) }}" class="lang_option"
+                                    ><img src="/img/lang/{{$locale}}.png" alt="{{$locale}}"
+                                        /></a>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -69,15 +71,17 @@
                         </div>
                         <div class="languages">
                             <div class="lang_on">
-                                <img src="/img/lang/georgia.png" alt=""/>
+
+                                <img src="/img/lang/{{app()->getLocale()}}.png" alt="ff"/>
                             </div>
                             <div class="dropdown flex center">
-                                <a href="#" class="lang_option"
-                                ><img src="/img/lang/britain.png" alt=""
-                                    /></a>
-                                <a href="#" class="lang_option"
-                                ><img src="/img/lang/russia.png" alt=""
-                                    /></a>
+                                @foreach(config('translatable.locales') as $locale)
+                                    @if(app()->getLocale() != $locale)
+                                        <a href="{{ get_url($locale) }}" class="lang_option"
+                                        ><img src="/img/lang/{{$locale}}.png" alt="{{$locale}}"
+                                            /></a>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
