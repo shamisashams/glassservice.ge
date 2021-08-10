@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,9 +87,9 @@ Route::prefix('{locale?}')
         })->name('client.home.index');
 
         // Contact Page
-        Route::get('/contact', function () {
-            return view('client.pages.contact.index');
-        })->name('client.contact.index');
+        Route::get('/contact', [ContactController::class, 'index'])->name('client.contact.index');
+        Route::post('/contact-us', [ContactController::class, 'mail'])->name('client.contact.mail');
+
 
         // About Page
         Route::get('/about', function () {

@@ -10,6 +10,7 @@
 namespace App\Providers;
 
 use App\Http\View\Composers\LanguageComposer;
+use App\Http\View\Composers\SettingComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -37,6 +38,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['admin.panels.navbar'], LanguageComposer::class);
+        View::composer(['client.layout.partial.footer', 'client.pages.contact.index'], SettingComposer::class);
 
     }
 }
