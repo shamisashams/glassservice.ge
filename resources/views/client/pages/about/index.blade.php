@@ -1,8 +1,8 @@
 @extends('client.layout.site')
 @section('subhead')
-    <title>@lang('client.home_meta_title')</title>
+    <title>{{ $aboutPage->meta_title }}</title>
     <meta name="description"
-          content="@lang('client.home_meta_description')">
+          content="{{ $aboutPage->meta_description }}">
 @endsection
 
 @section('wrapper')
