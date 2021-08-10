@@ -1,7 +1,8 @@
 @extends('client.layout.site')
 
-@section("meta_title", $productPage->meta_title)
-@section("meta_description", $productPage->meta_description)
+<title>{{ $productPage->meta_title }}</title>
+<meta name="description"
+      content="{{ $productPage->meta_description }}">
 @section('wrapper')
     <div class="product_page wrapper">
         <div class="head flex">
@@ -9,12 +10,6 @@
             <form class="filters flex">
                 @foreach($categories as $category)
                     <a href="{{locale_route('client.product.index',['category' => $category->id])}}">
-                        <input
-                            type="radio"
-                            class="product_filter_page"
-                            name="category"
-                            id="pdfp3"
-                        />
                         <label class="title" for="pdfp1">{{$category->title}}</label>
                     </a>
                 @endforeach
