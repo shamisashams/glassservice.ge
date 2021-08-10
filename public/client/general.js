@@ -1,8 +1,8 @@
 const search = document.querySelector(".search");
 const searchButton = document.querySelector(".search_icon");
 const closeSearch = document.querySelector(".close_search");
-const projectFilterHome = document.querySelectorAll(".project_filter_home");
-const projectContentHome = document.querySelectorAll(".project_content_home");
+// const projectFilterHome = document.querySelectorAll(".project_filter_home");
+// const projectContentHome = document.querySelectorAll(".project_content_home");
 const viewVideo = document.querySelectorAll(".view_video");
 const videoPopup = document.querySelector(".the_video_popup");
 const closeVideo = document.querySelector(".close_vid_popup");
@@ -22,18 +22,18 @@ closeSearch.addEventListener("click", () => {
 });
 
 // project filter on home page
-projectFilterHome.forEach((el, i) => {
-    el.addEventListener("click", () => {
-        projectFilterHome.forEach((el) => {
-            el.classList.remove("active");
-        });
-        projectContentHome.forEach((el) => {
-            el.classList.remove("active");
-        });
-        projectFilterHome[i].classList.add("active");
-        projectContentHome[i].classList.add("active");
-    });
-});
+// projectFilterHome.forEach((el, i) => {
+//     el.addEventListener("click", () => {
+//         projectFilterHome.forEach((el) => {
+//             el.classList.remove("active");
+//         });
+//         projectContentHome.forEach((el) => {
+//             el.classList.remove("active");
+//         });
+//         projectFilterHome[i].classList.add("active");
+//         projectContentHome[i].classList.add("active");
+//     });
+// });
 
 // video popup
 if ((viewVideo, closeVideo)) {

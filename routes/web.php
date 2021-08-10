@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -81,9 +82,7 @@ Route::prefix('{locale?}')
         });
 
         // Home Page
-        Route::get('', function () {
-            return view('client.pages.home.index');
-        })->name('client.home.index');
+        Route::get('', [HomeController::class, 'index'])->name('client.home.index');
 
         // Contact Page
         Route::get('/contact', function () {
