@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ContactController;
+use App\Http\Controllers\Client\AboutUsController;
 use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -85,26 +87,20 @@ Route::prefix('{locale?}')
         Route::get('', [HomeController::class, 'index'])->name('client.home.index');
 
         // Contact Page
-        Route::get('/contact', function () {
-            return view('client.pages.contact.index');
-        })->name('client.contact.index');
+        Route::get('/contact', [ContactController::class, 'index'])->name('client.contact.index');
+        Route::post('/contact-us', [ContactController::class, 'mail'])->name('client.contact.mail');
+
 
         // About Page
-        Route::get('/about', function () {
-            return view('client.pages.about.index');
-        })->name('client.about.index');
+        Route::get('/about', [AboutUsController::class, 'index'])->name('client.about.index');
 
         // Product Page
         Route::get('/product', [\App\Http\Controllers\Client\ProductController::class, 'index'])->name('client.product.index');
         Route::get('/product/{product}', [\App\Http\Controllers\Client\ProductController::class, 'show'])->name('client.product.show');
 
         // Project Page
-        Route::get('/project', function () {
-            return view("client.pages.project.index");
-        })->name('client.project.index');
-        Route::get('/project/{project}', function () {
-            return view('client.pages.project_detail.index');
-        })->name('client.project_detail.index');
+        Route::get('/project', [\App\Http\Controllers\Client\ProjectController::class, 'index'])->name('client.project.index');
+        Route::get('/project/{project}', [\App\Http\Controllers\Client\ProjectController::class, "show"])->name('client.project.show');
 
         // Search Page
         Route::get('/search', function () {

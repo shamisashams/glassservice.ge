@@ -2,7 +2,7 @@
 /**
  *  app/Mail/ContactEmail.php
  *
- * User: 
+ * User:
  * Date-Time: 21.12.20
  * Time: 13:49
  * @author Vito Makhatadze <vitomaxatadze@gmail.com>
@@ -38,8 +38,8 @@ class ContactEmail extends Mailable
     public function build()
     {
         $mailTo = Setting::where(['key' => 'email'])->first();
-        if ($mailTo->language()) {
-            return $this->from($mailTo->language()->value, $this->data['full_name'])->subject($this->data['subject'])->view('client.email.contact', ['data' => $this->data]);
+        if ($mailTo) {
+            return $this->from($mailTo->value, $this->data['name'])->subject($this->data['subject'])->view('client.email.contact', ['data' => $this->data]);
         }
 
     }

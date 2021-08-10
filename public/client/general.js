@@ -10,8 +10,8 @@ const closeVideo = document.querySelector(".close_vid_popup");
 // const productPcontent = document.querySelectorAll(".product_p_content");
 const detImgFilter = document.querySelectorAll(".detail_img_filter");
 const largeImage = document.querySelectorAll(".large_image");
-const projectPFilter = document.querySelectorAll(".project_p_filter");
-const projectMainGrid = document.querySelectorAll(".project_main_grid");
+// const projectPFilter = document.querySelectorAll(".project_p_filter");
+// const projectMainGrid = document.querySelectorAll(".project_main_grid");
 
 // search input
 searchButton.addEventListener("click", () => {
@@ -78,18 +78,18 @@ detImgFilter.forEach((el, i) => {
 });
 
 // project main page filter
-projectPFilter.forEach((el, i) => {
-    el.addEventListener("click", () => {
-        projectPFilter.forEach((el) => {
-            el.classList.remove("active");
-        });
-        projectMainGrid.forEach((el) => {
-            el.classList.remove("active");
-        });
-        projectPFilter[i].classList.add("active");
-        projectMainGrid[i].classList.add("active");
-    });
-});
+// projectPFilter.forEach((el, i) => {
+//     el.addEventListener("click", () => {
+//         projectPFilter.forEach((el) => {
+//             el.classList.remove("active");
+//         });
+//         projectMainGrid.forEach((el) => {
+//             el.classList.remove("active");
+//         });
+//         projectPFilter[i].classList.add("active");
+//         projectMainGrid[i].classList.add("active");
+//     });
+// });
 
 // responsive changes
 const menuButton = document.querySelector(".menu_button");

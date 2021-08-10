@@ -52,13 +52,15 @@
                 </a>
                 <div class="header_right flex">
                     <div class="navbar flex">
-                        <a class="nav_item active" href="{{ route("client.home.index") }}">მთავარი</a>
-                        <a class="nav_item" href="{{ route("client.product.index") }}">პროდუქტი</a>
-                        <a class="nav_item" href="{{ route("client.service.index") }}">სერვისი</a>
-                        <a class="nav_item" href="{{ route("client.about.index") }}">ჩვენ შესეხებ</a>
-                        <a class="nav_item" href="{{ route("client.project.index") }}">პროექტები</a>
-                        <a class="nav_item" href="{{ route("client.contact.index") }}">კონტაქტი</a>
+                        <a class="nav_item active" href="{{ locale_route("client.home.index") }}">მთავარი</a>
+                        <a class="nav_item" href="{{ locale_route("client.product.index") }}">პროდუქტი</a>
+                        <a class="nav_item" href="{{ locale_route("client.service.index") }}">სერვისი</a>
+                        <a class="nav_item" href="{{ locale_route("client.about.index") }}">ჩვენ შესეხებ</a>
+                        <a class="nav_item" href="{{ locale_route("client.project.index") }}">პროექტები</a>
+                        <a class="nav_item" href="{{ locale_route("client.contact.index") }}">კონტაქტი</a>
                     </div>
+{{--                    @dd($localizations['current']['locale'])--}}
+
                     <div class="flex">
                         <div class="search flex center">
                             <input type="text" placeholder="Search here"/>
