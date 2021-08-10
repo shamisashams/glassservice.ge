@@ -120,4 +120,9 @@ class Category extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }
