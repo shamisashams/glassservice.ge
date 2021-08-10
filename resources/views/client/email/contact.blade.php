@@ -72,8 +72,8 @@
 <section id="wrapper">
     <section id="maincContent">
         <section id="content">
-            <h2> სრული სახელი: {{$data['full_name']}}</h2>
-            <h2> ელ-ფოსტა: {{$data['email']}}</h2>
+            <h2> სრული სახელი: {{$data['name']}}</h2>
+            <h2> ელ-ფოსტა: {{$data['mail']}}</h2>
             <h2> მობილური: {{$data['phone']}}</h2>
             <h2> შეტყობინება</h2>
             <h5>{{$data['message']}}</h5>
