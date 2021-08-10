@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\Client\AboutUsController;
 use App\Http\Controllers\Client\ServiceController;
 use Illuminate\Support\Facades\Route;
 
@@ -91,9 +92,7 @@ Route::prefix('{locale?}')
         })->name('client.contact.index');
 
         // About Page
-        Route::get('/about', function () {
-            return view('client.pages.about.index');
-        })->name('client.about.index');
+        Route::get('/about', [AboutUsController::class, 'index'])->name('client.about.index');
 
         // Product Page
         Route::get('/product', [\App\Http\Controllers\Client\ProductController::class, 'index'])->name('client.product.index');
