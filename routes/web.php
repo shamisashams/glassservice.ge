@@ -9,6 +9,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CertificateController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
@@ -71,6 +72,10 @@ Route::prefix('{locale?}')
                 // Service
                 Route::resource('service', \App\Http\Controllers\Admin\ServiceController::class);
                 Route::get('service/{service}/destroy', [\App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('service.destroy');
+
+                // Certificate
+                Route::resource('certificate', CertificateController::class);
+                Route::get('certificate/{certificate}/destroy', [CertificateController::class, 'destroy'])->name('certificate.destroy');
 
             });
         });

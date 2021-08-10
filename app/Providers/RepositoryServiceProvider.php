@@ -10,9 +10,11 @@
 namespace App\Providers;
 
 use App\Repositories\CategoryRepositoryInterface;
+use App\Repositories\CertificateRepositoryInterface;
 use App\Repositories\Eloquent\Base\BaseRepository;
 use App\Repositories\Eloquent\Base\EloquentRepositoryInterface;
 use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Eloquent\CertificateRepository;
 use App\Repositories\Eloquent\LanguageRepository;
 use App\Repositories\Eloquent\PageRepository;
 use App\Repositories\Eloquent\ProductRepository;
@@ -65,5 +67,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PageRepositoryInterface::class, PageRepository::class);
         $this->app->bind(SettingRepositoryInterface::class, SettingRepository::class);
         $this->app->bind(ServiceRepositoryInterface::class,ServiceRepository::class);
+        $this->app->bind(CertificateRepositoryInterface::class,CertificateRepository::class);
+
     }
 }

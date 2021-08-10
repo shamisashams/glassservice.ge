@@ -36,6 +36,13 @@
             "slug": "page"
         },
         {
+            "url": "certificate.index",
+            "name": "certificate",
+            "i18n": "certificate",
+            "icon": "language",
+            "slug": "certificate"
+        },
+        {
             "url": "slider.index",
             "name": "slider",
             "i18n": "slider",
