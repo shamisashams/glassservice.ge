@@ -5,141 +5,66 @@
           content="@lang('client.home_meta_description')">
 @endsection
 @section('wrapper')
+@if(count($sliders))
     <section class="hero_section">
         <div class="hero_slider">
-            <div class="slide">
-                <div class="overlay">
-                    <img src="/img/hero/1.png" alt="" class="bg_img" />
-                    <div class="content wrapper flex">
-                        <div class="hero_head">სლაიდერის სათაური</div>
-                        <div class="paragraph light">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
+            @foreach($sliders as $slider)
+                <div class="slide">
+                    <div class="overlay">
+                        <img src="{{url($slider->file ? $slider->file->file_url : '')}}" alt="" class="bg_img"/>
+                        <div class="content wrapper flex">
+                            <div class="hero_head">{{ $slider->title }}</div>
+                            <div class="paragraph light">
+                                {!! $slider->description !!}
+                            </div>
                         </div>
                     </div>
+                    @if($slider->youtube_url)
+                        <button class="view_video" id="{{$slider->id}}">
+                            <img src="/img/icons/hero/1.png" alt=""/>
+                        </button>
+                    @endif
                 </div>
-                <button class="view_video">
-                    <img src="/img/icons/hero/1.png" alt="" />
-                </button>
-            </div>
-            <div class="slide">
-                <div class="overlay">
-                    <img src="/img/hero/2.jpg" alt="" class="bg_img" />
-                    <div class="content wrapper flex">
-                        <div class="hero_head">ეხმარება რეალურთან</div>
-                        <div class="paragraph light">
-                            შემთხვევითად გენერირებული დიზაინერებსდიზაინერებსტექსმის შემქმნტი
-                            ეხმარება დიზაინერებს და ტიპოგრაფიული ნაწარელებს,
-                        </div>
-                    </div>
-                </div>
-                <button class="view_video">
-                    <img src="/img/icons/hero/1.png" alt="" />
-                </button>
-            </div>
-            <div class="slide">
-                <div class="overlay">
-                    <img src="/img/hero/3.jpg" alt="" class="bg_img" />
-                    <div class="content wrapper flex">
-                        <div class="hero_head">ტიპოგრაფიული დიზაინერებს</div>
-                        <div class="paragraph light">
-                            შემთხვევითად ის შემქმნგენერირებულიელებს, რეალურთან ტექსტი
-                            ეხმარება დიზაინერებს და ტიპოგრაფიული ნაწარმ
-                        </div>
-                    </div>
-                </div>
-                <button class="view_video">
-                    <img src="/img/icons/hero/1.png" alt="" />
-                </button>
-            </div>
+            @endforeach
         </div>
         <button class="arrow flex center" id="hero_prev">
-            <img src="/img/icons/arrows/prev.svg" alt="" />
+            <img src="/img/icons/arrows/prev.svg" alt=""/>
         </button>
         <button class="arrow flex center" id="hero_next">
-            <img src="/img/icons/arrows/next.svg" alt="" />
+            <img src="/img/icons/arrows/next.svg" alt=""/>
         </button>
     </section>
+
+@endif
     <section class="home_products wrapper margin_bottom">
         <div class="head flex">
-            <div class="main_title">ჩვენი პროდუქტი</div>
-            <a href="products.html" class="see_all paragraph dark"
-            ><b>სრულად</b>
+            <div class="main_title">{{ $productPage->title }}</div>
+            <a href="{{ locale_route("client.product.index") }}" class="see_all paragraph dark"
+            ><b>@lang('client.fully')</b>
             </a>
         </div>
         <div class="paragraph dark">
-            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და ტიპოგრაფიული
-            ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად მიახლოებული შაბლონი
-            წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა, როდესაც დიზაინის
-            შესრულებისას საჩვენებელია, თუ როგორი იქნება ტექსტის ბლოკი. სწორედ ასეთ
-            დროს
+            {!! $productPage->description !!}
         </div>
         <div class="slider">
             <div class="home_products_slider pro_sliders_both flex">
-                <a href="product-detail.html">
-                    <div class="item img">
-                        <img src="/img/products/1.png" alt="" />
-                        <div class="read_more">
-                            <div>გაიგე მეტი</div>
-                            <img src="/img/icons/arrows/2.png" alt="" />
-                        </div>
-                        <div class="caption">
-                            <div class="title light">პროდუქტის დასახელება</div>
-                            <div class="paragraph light">
-                                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
+                @foreach($products as $product)
+                    <a href="{{locale_route('client.product.show',$product->slug)}}">
+                        <div class="item img">
+                            <img src="{{url($product->file ? $product->file->file_url : '')}}" alt=""/>
+                            <div class="read_more">
+                                <div>{{__('client.view_more')}}</div>
+                                <img src="/img/icons/arrows/2.png" alt=""/>
+                            </div>
+                            <div class="caption">
+                                <div class="title light">{{$product->title}}</div>
+                                <div class="paragraph light">
+                                    {!! $product->short_description !!}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="product-detail.html">
-                    <div class="item img">
-                        <img src="/img/products/2.png" alt="" />
-                        <div class="read_more">
-                            <div>გაიგე მეტი</div>
-                            <img src="/img/icons/arrows/2.png" alt="" />
-                        </div>
-                        <div class="caption">
-                            <div class="title light">პროდუქტის დასახელება</div>
-                            <div class="paragraph light">
-                                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="product-detail.html">
-                    <div class="item img">
-                        <img src="/img/products/3.png" alt="" />
-                        <div class="read_more">
-                            <div>გაიგე მეტი</div>
-                            <img src="/img/icons/arrows/2.png" alt="" />
-                        </div>
-                        <div class="caption">
-                            <div class="title light">პროდუქტის დასახელება</div>
-                            <div class="paragraph light">
-                                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="product-detail.html">
-                    <div class="item img">
-                        <img src="/img/products/4.png" alt="" />
-                        <div class="read_more">
-                            <div>გაიგე მეტი</div>
-                            <img src="/img/icons/arrows/2.png" alt="" />
-                        </div>
-                        <div class="caption">
-                            <div class="title light">პროდუქტის დასახელება</div>
-                            <div class="paragraph light">
-                                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                @endforeach
             </div>
             <button class="arrow" id="prev_product">
                 <svg
@@ -174,98 +99,46 @@
         </div>
     </section>
     <section class="home_services wrapper margin_bottom">
-        <div class="main_title">ჩვენი სერვისი</div>
+        <div class="main_title">{{ $servicePage->title }}</div>
         <div class="grid">
-            <div class="item">
-                <div class="img">
-                    <img src="/img/services/1.png" alt="" />
+            @foreach($services as $service)
+                <div class="item">
+                    <div class="img">
+                        <img src="{{url($service->file ? $service->file->file_url : '')}}" alt=""/>
+                    </div>
+                    <div class="title">{{ $service->title }}</div>
+                    <div class="paragraph">
+                        {!! $service->description !!}
+                    </div>
                 </div>
-                <div class="title">სერვისის დასახელება</div>
-                <div class="paragraph">
-                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                    მიახლოებული შაბლონი წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა,
-                    როდესაც დიზაინის შესრულებისას საჩვენებელია, თუ
-                </div>
-            </div>
-            <div class="item">
-                <div class="img">
-                    <img src="/img/services/2.png" alt="" />
-                </div>
-                <div class="title">სერვისის დასახელება</div>
-                <div class="paragraph">
-                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                    მიახლოებული შაბლონი წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა,
-                    როდესაც დიზაინის შესრულებისას საჩვენებელია, თუ
-                </div>
-            </div>
-            <div class="item">
-                <div class="img">
-                    <img src="/img/services/3.png" alt="" />
-                </div>
-                <div class="title">სერვისის დასახელება</div>
-                <div class="paragraph">
-                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                    მიახლოებული შაბლონი წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა,
-                    როდესაც დიზაინის შესრულებისას საჩვენებელია, თუ
-                </div>
-            </div>
-            <div class="item">
-                <div class="img">
-                    <img src="/img/services/4.png" alt="" />
-                </div>
-                <div class="title">სერვისის დასახელება</div>
-                <div class="paragraph">
-                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                    მიახლოებული შაბლონი წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა,
-                    როდესაც დიზაინის შესრულებისას საჩვენებელია, თუ
-                </div>
-            </div>
+            @endforeach
         </div>
-        <a class="see_all" href="services.html">
+        <a class="see_all" href="{{ locale_route("client.service.index") }}">
             <button class="main_button">
-                სრულად <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
+                @lang('client.fully') <img src="/img/icons/arrows/1.png" alt="" class="abs_arr"/>
             </button>
         </a>
     </section>
     <section class="home_aboutus wrapper flex margin_bottom">
         <div class="left">
-            <div class="main_title">ჩვენ შესახებ</div>
+            <div class="main_title">{{ $aboutPage->title }}</div>
             <div class="paragraph">
-                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და ტიპოგრაფიული
-                ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად მიახლოებული შაბლონი
-                წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა, როდესაც დიზაინის
-                შესრულებისას საჩვენებელია, თუ როგორი იქნება ტექსტის ბლოკი. სწორედ ასეთ
-                დროს არის მოსახერხებელი ამ გენერატორით შექმნილი ტექსტის გამოყენება,
-                რადგან უბრალოდ „ტექსტი ტექსტი ტექსტი“ ან სხვა გამეორებადი სიტყვების
-                ჩაყრა, ხელოვნურ ვიზუალურ სიმეტრიას ქმნის და არაბუნებრივად გამოიყურება.
-                ხშირადაა შემთხვევა, როდესაც დიზაინის შესრულებისას საჩვენებელია, თუ
-                როგორი იქნება ტექსტის ბლოკი. სწორედ ასეთ დროს არის მოსახერხებელი ამ
-                გენერატორით შექმნილი ტექსტის გამოყენება, რადგან უბრალოდ „ტექსტი ტექსტი
-                ტექსტი“ ან სხვა გამეორებადი სიტყვების ჩაყრა.
+                {!! $aboutPage->description !!}
             </div>
-            <div class="slider_title">სერტიფიკატები და ჯილდოები</div>
+            <div class="slider_title">@lang("client.home_certificates_and_awards")</div>
             <div class="slider">
                 <div class="home_about_slider flex">
-                    <div class="item">
-                        <div class="img"></div>
-                        <div class="paragraph">სერტიფიკატის დასახელება</div>
-                    </div>
-                    <div class="item">
-                        <div class="img"></div>
-                        <div class="paragraph">სერტიფიკატის დასახელება</div>
-                    </div>
-                    <div class="item">
-                        <div class="img"></div>
-                        <div class="paragraph">სერტიფიკატის დასახელება</div>
-                    </div>
-                    <div class="item">
-                        <div class="img"></div>
-                        <div class="paragraph">სერტიფიკატის დასახელება</div>
-                    </div>
+                    {{--                    @dd($certificates)--}}
+                    @foreach($certificates as $certificate)
+                        {{--                        @dd($certificate)--}}
+                        <div class="item">
+                            <div class="img">
+                                <img src="{{url($certificate->file ? $certificate->file->file_url : '')}}"
+                                     alt="{{ $certificate->title }}">
+                            </div>
+                            <div class="paragraph">{{ $certificate->title }}</div>
+                        </div>
+                    @endforeach
                 </div>
                 <button id="next_about">
                     <svg
@@ -285,131 +158,60 @@
                 </button>
             </div>
 
-            <a href="#">
+            <a href="{{ locale_route("client.about.index") }}">
                 <button class="main_button">
-                    გაიგე მეტი
-                    <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
+                    @lang('client.view_more')
+                    <img src="/img/icons/arrows/1.png" alt="" class="abs_arr"/>
                 </button>
             </a>
         </div>
         <div class="img right">
-            <img src="/img/other/1.png" alt="" />
+            <img src="/img/other/1.png" alt=""/>
         </div>
     </section>
     <section class="home_products projects wrapper margin_bottom">
         <div class="head flex">
-            <div class="main_title">ჩვენი პროდუქტი</div>
-            <a href="products.html" class="see_all paragraph dark"
-            ><b>სრულად</b>
+            <div class="main_title">{{ $projectPage->title }}</div>
+            <a href="{{ locale_route("client.project.index") }}" class="see_all paragraph dark"
+            ><b>@lang('client.fully')</b>
             </a>
         </div>
-        <div class="filter_btns flex">
-            <button class="project_filter_home paragraph active">სააბაზანო</button>
-            <button class="project_filter_home paragraph">მინაპაკეტი</button>
-            <button class="project_filter_home paragraph">სხვადასხვა</button>
-        </div>
+        {{--        <div class="filter_btns flex">--}}
+        {{--            <button class="project_filter_home paragraph active">სააბაზანო</button>--}}
+        {{--            <button class="project_filter_home paragraph">მინაპაკეტი</button>--}}
+        {{--            <button class="project_filter_home paragraph">სხვადასხვა</button>--}}
+        {{--        </div>--}}
         <div class="project_content_home active">
             <div class="paragraph dark">
-                შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და ტიპოგრაფიული
-                ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად მიახლოებული შაბლონი
-                წარუდგინონ შემფასებელს. ხშირადაა შემთხვევა, როდესაც დიზაინის
-                შესრულებისას საჩვენებელია, თუ როგორი იქნება ტექსტის ბლოკი. სწორედ ასეთ
-                დროს
+                {!! $projectPage->description !!}
             </div>
             <div class="slider">
                 <div class="home_projects_slider pro_sliders_both flex">
-                    <a
-                        href="project-detail.html
-            "
-                    >
-                        <div class="item img">
-                            <img src="/img/products/4.png" alt="" />
-                            <div class="read_more">
-                                <div>გაიგე მეტი</div>
-                                <img src="/img/icons/arrows/2.png" alt="" />
-                            </div>
-                            <div class="title light">
-                                პროექტის დასახელება
-                                <br />
-                                <span>01.01.2021</span>
-                            </div>
-                            <div class="caption">
-                                <div class="paragraph light">
-                                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
+                    @foreach($projects as $project)
+
+                        <a
+                            href="{{ locale_route("client.project.show", $project->slug) }}"
+                        >
+                            <div class="item img">
+                                <img src="{{url($project->file ? $project->file->file_url : '')}}" alt=""/>
+                                <div class="read_more">
+                                    <div>@lang('view.more')</div>
+                                    <img src="/img/icons/arrows/2.png" alt=""/>
+                                </div>
+                                <div class="title light">
+                                    {{ $project->title }}
+                                    <br/>
+                                    <span>{{ $project->created_at->format('d.m.Y') }}</span>
+                                </div>
+                                <div class="caption">
+                                    <div class="paragraph light">
+                                        {{ $project->short_description }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                    <a
-                        href="project-detail.html
-            "
-                    >
-                        <div class="item img">
-                            <img src="/img/products/5.png" alt="" />
-                            <div class="read_more">
-                                <div>გაიგე მეტი</div>
-                                <img src="/img/icons/arrows/2.png" alt="" />
-                            </div>
-                            <div class="title light">
-                                პროექტის დასახელება
-                                <br />
-                                <span>01.01.2021</span>
-                            </div>
-                            <div class="caption">
-                                <div class="paragraph light">
-                                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a
-                        href="project-detail.html
-            "
-                    >
-                        <div class="item img">
-                            <img src="/img/products/4.png" alt="" />
-                            <div class="read_more">
-                                <div>გაიგე მეტი</div>
-                                <img src="/img/icons/arrows/2.png" alt="" />
-                            </div>
-                            <div class="title light">
-                                პროექტის დასახელება
-                                <br />
-                                <span>01.01.2021</span>
-                            </div>
-                            <div class="caption">
-                                <div class="paragraph light">
-                                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a
-                        href="project-detail.html
-            "
-                    >
-                        <div class="item img">
-                            <img src="/img/products/5.png" alt="" />
-                            <div class="read_more">
-                                <div>გაიგე მეტი</div>
-                                <img src="/img/icons/arrows/2.png" alt="" />
-                            </div>
-                            <div class="title light">
-                                პროექტის დასახელება
-                                <br />
-                                <span>01.01.2021</span>
-                            </div>
-                            <div class="caption">
-                                <div class="paragraph light">
-                                    შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                                    ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან მაქსიმალურად
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endforeach
+
                 </div>
                 <button class="arrow" id="prev_project">
                     <svg
@@ -443,24 +245,25 @@
                 </button>
             </div>
         </div>
-        <div class="project_content_home">მინაპაკეტი</div>
-        <div class="project_content_home">სხვადასხვა</div>
+
     </section>
 @endsection
 
 @section("home_video")
-    <div class="the_video_popup flex center">
-        <button class="close_vid_popup">
-            <img src="img/icons/header/2.png" alt="" />
-        </button>
-        <div class="video">
-            <iframe
-                src="https://www.youtube.com/embed/YjJJeB4x5go"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-            ></iframe>
+    @foreach($sliders as $slider)
+        <div class="the_video_popup flex center" id="{{$slider->id}}">
+            <button class="close_vid_popup">
+                <img src="/img/icons/header/2.png" alt=""/>
+            </button>
+            <div class="video">
+                <iframe
+                    src="https://www.youtube.com/embed/{{$slider->youtube_url}}"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
         </div>
-    </div>
+    @endforeach
 @endsection

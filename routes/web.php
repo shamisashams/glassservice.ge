@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TranslationController;
 use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\AboutUsController;
 use App\Http\Controllers\Client\ServiceController;
@@ -37,7 +38,7 @@ Route::prefix('{locale?}')
             Route::middleware('auth')->group(function () {
                 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-                Route::redirect('','/admin/product',);
+                Route::redirect('', '/admin/product',);
 
                 // Language
                 Route::resource('language', LanguageController::class);
@@ -81,37 +82,36 @@ Route::prefix('{locale?}')
 
             });
         });
+        Route::middleware(['active'])->group(function () {
 
-        // Home Page
-        Route::get('', function () {
-            return view('client.pages.home.index');
-        })->name('client.home.index');
+            // Home Page
+            Route::get('', [HomeController::class, 'index'])->name('client.home.index');
 
-        // Contact Page
-        Route::get('/contact', [ContactController::class, 'index'])->name('client.contact.index');
-        Route::post('/contact-us', [ContactController::class, 'mail'])->name('client.contact.mail');
+            // Contact Page
+            Route::get('/contact', [ContactController::class, 'index'])->name('client.contact.index');
+            Route::post('/contact-us', [ContactController::class, 'mail'])->name('client.contact.mail');
 
 
-        // About Page
-        Route::get('/about', [AboutUsController::class, 'index'])->name('client.about.index');
+            // About Page
+            Route::get('/about', [AboutUsController::class, 'index'])->name('client.about.index');
 
-        // Product Page
-        Route::get('/product', [\App\Http\Controllers\Client\ProductController::class, 'index'])->name('client.product.index');
-        Route::get('/product/{product}', [\App\Http\Controllers\Client\ProductController::class, 'show'])->name('client.product.show');
+            // Product Page
+            Route::get('/product', [\App\Http\Controllers\Client\ProductController::class, 'index'])->name('client.product.index');
+            Route::get('/product/{product}', [\App\Http\Controllers\Client\ProductController::class, 'show'])->name('client.product.show');
 
-        // Search Page
-        Route::get('/search', [\App\Http\Controllers\Client\SearchController::class,'index'])->name('client.search.index');
+            // Project Page
+            Route::get('/project', [\App\Http\Controllers\Client\ProjectController::class, 'index'])->name('client.project.index');
+            Route::get('/project/{project}', [\App\Http\Controllers\Client\ProjectController::class, "show"])->name('client.project.show');
+            // Search Page
+            Route::get('/search', [\App\Http\Controllers\Client\SearchController::class, 'index'])->name('client.search.index');
 
-        // Project Page
-        Route::get('/project', [\App\Http\Controllers\Client\ProjectController::class, 'index'])->name('client.project.index');
-        Route::get('/project/{project}', [\App\Http\Controllers\Client\ProjectController::class, "show"])->name('client.project.show');
+            // Project Page
+            Route::get('/project', [\App\Http\Controllers\Client\ProjectController::class, 'index'])->name('client.project.index');
+            Route::get('/project/{project}', [\App\Http\Controllers\Client\ProjectController::class, "show"])->name('client.project.show');
 
-        // Search Page
-        Route::get('/search', function () {
-            return view('client.pages.search.index');
-        })->name('client.search.index');
-
-        // Service Page
-        Route::get('/service', [ServiceController::class, "index"])->name('client.service.index');
+            // Service Page
+            Route::get('/service', [ServiceController::class, "index"])->name('client.service.index');
+        });
     });
+
 
