@@ -36,13 +36,13 @@ class SearchController extends Controller
                             return $query->where('title', 'like', '%' . $keyword . '%');
                         });
                 })
-                ->registerModel(Project::class, function (ModelSearchAspect $modelSearchAspect) use ($keyword) {
+                /*->registerModel(Project::class, function (ModelSearchAspect $modelSearchAspect) use ($keyword) {
                     $modelSearchAspect
                         ->addSearchableAttribute('created_at')
                         ->orWhereHas('translations', function ($query) use ($keyword) {
                             return $query->where('title', 'like', '%' . $keyword . '%');
                         });
-                })
+                })*/
                 ->search($keyword);
         }
         return view('client.pages.search.index', [

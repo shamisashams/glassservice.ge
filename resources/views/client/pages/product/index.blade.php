@@ -26,11 +26,11 @@
                 {!! $productPage->description !!}
             </div>
             <div class="slider">
-                @foreach($products as $product)
-                    <div class="ppage_slider flex">
+                <div class="ppage_slider flex">
+                    @foreach($products as $product)
                         <div class="item">
                             <div class="img">
-                                <img src="{{url($product->file ? $product->file->file_url : '')}}" alt="" />
+                                <img src="{{url($product->file ? $product->file->file_url : '')}}" alt=""/>
                             </div>
                             <div class="title">{{$product->title}}</div>
                             <div class="paragraph">
@@ -39,18 +39,17 @@
                             <a href="{{locale_route('client.product.show',$product->slug)}}">
                                 <button class="main_button">
                                     {{__('client.view_more')}}
-                                    <img src="/img/icons/arrows/1.png" alt="" class="abs_arr" />
+                                    <img src="/img/icons/arrows/1.png" alt="" class="abs_arr"/>
                                 </button>
                             </a>
                         </div>
-                    </div>
-
-                @endforeach
+                    @endforeach
+                </div>
                 <button class="arrow flex center" id="pp_prev">
-                    <img src="/img/icons/arrows/prev.svg" alt="" />
+                    <img src="/img/icons/arrows/prev.svg" alt=""/>
                 </button>
                 <button class="arrow flex center" id="pp_next">
-                    <img src="/img/icons/arrows/next.svg" alt="" />
+                    <img src="/img/icons/arrows/next.svg" alt=""/>
                 </button>
             </div>
         </div>
