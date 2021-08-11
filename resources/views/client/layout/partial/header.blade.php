@@ -6,12 +6,12 @@
             </a>
             <div class="header_right flex">
                 <div class="navbar flex">
-                    <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.header_home_navigation") </a>
-                    <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.header_product_navigation")</a>
-                    <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.header_service_navigation")</a>
-                    <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.header_about_us_navigation")</a>
-                    <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.header_projects_navigation")</a>
-                    <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.header_contact_navigation")</a>
+                    <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.home") </a>
+                    <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.product")</a>
+                    <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.service")</a>
+                    <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.about_us")</a>
+                    <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.projects")</a>
+                    <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.contact")</a>
                 </div>
                 <div class="flex">
                     <div class="search flex center">
@@ -47,17 +47,17 @@
     <div class="all_showcases">
         <header class="header">
             <div class="wrapper flex">
-                <a href="index.html" class="logo">
+                <a href="{{locale_route('client.home.index')}}" class="logo">
                     <img src="/img/logo/1.png" alt=""/>
                 </a>
                 <div class="header_right flex">
                     <div class="navbar flex">
-                        <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.header_home_navigation") </a>
-                        <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.header_product_navigation")</a>
-                        <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.header_service_navigation")</a>
-                        <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.header_about_us_navigation")</a>
-                        <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.header_projects_navigation")</a>
-                        <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.header_contact_navigation")</a>
+                        <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.home") </a>
+                        <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.product")</a>
+                        <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.service")</a>
+                        <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.about_us")</a>
+                        <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.projects")</a>
+                        <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.contact")</a>
                     </div>
 {{--                    @dd($localizations['current']['locale'])--}}
 
