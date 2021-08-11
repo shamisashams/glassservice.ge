@@ -1,7 +1,7 @@
 @if(request()->routeIs("client.home.index"))
     <header class="header">
         <div class="wrapper flex">
-            <a href="index.html" class="logo">
+            <a href="{{ locale_route("client.home.index") }}" class="logo">
                 <img src="/img/logo/1.png" alt=""/>
             </a>
             <div class="header_right flex">
@@ -61,7 +61,6 @@
                         <a class="nav_item {{Request::route()->getName()  === 'client.project.index'? 'active' : ''}}" href="{{ locale_route("client.project.index") }}">@lang("client.projects")</a>
                         <a class="nav_item {{Request::route()->getName()  === 'client.contact.index'? 'active' : ''}}" href="{{ locale_route("client.contact.index") }}">@lang("client.contact")</a>
                     </div>
-{{--                    @dd($localizations['current']['locale'])--}}
 
                     <div class="flex">
                         <div class="search flex center">
