@@ -15,13 +15,15 @@
                 </div>
                 <div class="flex">
                     <div class="search flex center">
-                        <input type="text" placeholder="Search here"/>
-                        <button class="search_icon">
-                            <img src="/img/icons/header/1.png" alt=""/>
-                        </button>
-                        <button class="close_search">
-                            <img src="/img/icons/header/2.png" alt=""/>
-                        </button>
+                        <form action="{{locale_route('client.search.index')}}">
+                            <input type="text" name="keyword" placeholder="{{__('client.search_here')}}"/>
+                            <button type="button" class="search_icon">
+                                <img src="/img/icons/header/1.png" alt=""/>
+                            </button>
+                            <button type="button" class="close_search">
+                                <img src="/img/icons/header/2.png" alt=""/>
+                            </button>
+                        </form>
                     </div>
                     <div class="languages">
                         <div class="lang_on">
@@ -63,13 +65,15 @@
 
                     <div class="flex">
                         <div class="search flex center">
-                            <input type="text" placeholder="Search here"/>
-                            <button class="search_icon">
-                                <img src="/img/icons/header/1.png" alt=""/>
-                            </button>
-                            <button class="close_search">
-                                <img src="/img/icons/header/2.png" alt=""/>
-                            </button>
+                            <form action="{{locale_route('client.search.index')}}">
+                                <input type="text" name="keyword" placeholder="{{__('client.search_here')}}"/>
+                                <button type="button" class="search_icon">
+                                    <img src="/img/icons/header/1.png" alt=""/>
+                                </button>
+                                <button type="button" class="close_search">
+                                    <img src="/img/icons/header/2.png" alt=""/>
+                                </button>
+                            </form>
                         </div>
                         <div class="languages">
                             <div class="lang_on">
