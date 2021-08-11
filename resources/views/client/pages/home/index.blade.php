@@ -5,6 +5,7 @@
           content="@lang('client.home_meta_description')">
 @endsection
 @section('wrapper')
+@if(count($sliders))
     <section class="hero_section">
         <div class="hero_slider">
             @foreach($sliders as $slider)
@@ -18,9 +19,11 @@
                             </div>
                         </div>
                     </div>
-                    <button class="view_video" id="{{$slider->id}}">
-                        <img src="/img/icons/hero/1.png" alt=""/>
-                    </button>
+                    @if($slider->youtube_url)
+                        <button class="view_video" id="{{$slider->id}}">
+                            <img src="/img/icons/hero/1.png" alt=""/>
+                        </button>
+                    @endif
                 </div>
             @endforeach
         </div>
@@ -31,11 +34,13 @@
             <img src="/img/icons/arrows/next.svg" alt=""/>
         </button>
     </section>
+
+@endif
     <section class="home_products wrapper margin_bottom">
         <div class="head flex">
             <div class="main_title">{{ $productPage->title }}</div>
             <a href="{{ locale_route("client.product.index") }}" class="see_all paragraph dark"
-            ><b>სრულად</b>
+            ><b>@lang('client.fully')</b>
             </a>
         </div>
         <div class="paragraph dark">
@@ -48,7 +53,7 @@
                         <div class="item img">
                             <img src="{{url($product->file ? $product->file->file_url : '')}}" alt=""/>
                             <div class="read_more">
-                                <div>გაიგე მეტი</div>
+                                <div>{{__('client.view_more')}}</div>
                                 <img src="/img/icons/arrows/2.png" alt=""/>
                             </div>
                             <div class="caption">
@@ -110,7 +115,7 @@
         </div>
         <a class="see_all" href="{{ locale_route("client.service.index") }}">
             <button class="main_button">
-                სრულად <img src="/img/icons/arrows/1.png" alt="" class="abs_arr"/>
+                @lang('client.fully') <img src="/img/icons/arrows/1.png" alt="" class="abs_arr"/>
             </button>
         </a>
     </section>
@@ -155,7 +160,7 @@
 
             <a href="{{ locale_route("client.about.index") }}">
                 <button class="main_button">
-                    გაიგე მეტი
+                    @lang('client.view_more')
                     <img src="/img/icons/arrows/1.png" alt="" class="abs_arr"/>
                 </button>
             </a>
@@ -168,7 +173,7 @@
         <div class="head flex">
             <div class="main_title">{{ $projectPage->title }}</div>
             <a href="{{ locale_route("client.project.index") }}" class="see_all paragraph dark"
-            ><b>სრულად</b>
+            ><b>@lang('client.fully')</b>
             </a>
         </div>
         {{--        <div class="filter_btns flex">--}}
@@ -190,7 +195,7 @@
                             <div class="item img">
                                 <img src="{{url($project->file ? $project->file->file_url : '')}}" alt=""/>
                                 <div class="read_more">
-                                    <div>გაიგე მეტი</div>
+                                    <div>@lang('view.more')</div>
                                     <img src="/img/icons/arrows/2.png" alt=""/>
                                 </div>
                                 <div class="title light">

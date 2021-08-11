@@ -1,19 +1,18 @@
 <footer class="footer">
     <div class="wrapper flex">
         <div class="column">
-            <a href="index.html" class="logo">
+            <a href="{{locale_route('client.home.index')}}" class="logo">
                 <img src="/img/logo/2.png" alt="" />
             </a>
-            <div class="paragraph light">@lang("client.product_name_1")</div>
             <div class="paragraph light">Design By Insite International</div>
         </div>
         <div class="column">
-            <a href="{{ locale_route("client.home.index") }}" class="paragraph light"> @lang("client.footer_home_navigation") </a>
-            <a href="{{ locale_route("client.product.index") }}" class="paragraph light"> @lang("client.footer_product_navigation") </a>
-            <a href="{{ locale_route("client.service.index") }}" class="paragraph light"> @lang("client.footer_service_navigation") </a>
-            <a href="{{ locale_route("client.about.index") }}" class="paragraph light"> @lang("client.footer_about_us_navigation") </a>
-            <a href="{{ locale_route("client.project.index") }}" class="paragraph light"> @lang("client.footer_projects_navigation") </a>
-            <a href="{{ locale_route("client.contact.index") }}" class="paragraph light"> @lang("client.footer_contact_navigation") </a>
+            <a href="{{ locale_route("client.home.index") }}" class="paragraph light"> @lang("client.footer_home") </a>
+            <a href="{{ locale_route("client.product.index") }}" class="paragraph light"> @lang("client.footer_product") </a>
+            <a href="{{ locale_route("client.service.index") }}" class="paragraph light"> @lang("client.footer_service") </a>
+            <a href="{{ locale_route("client.about.index") }}" class="paragraph light"> @lang("client.footer_about_us") </a>
+            <a href="{{ locale_route("client.project.index") }}" class="paragraph light"> @lang("client.footer_projects") </a>
+            <a href="{{ locale_route("client.contact.index") }}" class="paragraph light"> @lang("client.footer_contact") </a>
         </div>
         <div class="column">
             <div class="title light">@lang("client.footer_contact_us")</div>

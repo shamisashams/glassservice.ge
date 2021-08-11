@@ -52,12 +52,12 @@
                 </a>
                 <div class="header_right flex">
                     <div class="navbar flex">
-                        <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.home") </a>
-                        <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.product")</a>
-                        <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.service")</a>
-                        <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.about_us")</a>
-                        <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.projects")</a>
-                        <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.contact")</a>
+                        <a class="nav_item {{Request::route()->getName()  === 'client.home.index'? 'active' : ''}}" href="{{ locale_route("client.home.index") }}">@lang("client.home") </a>
+                        <a class="nav_item {{Request::route()->getName()  === 'client.product.index'? 'active' : ''}}" href="{{ locale_route("client.product.index") }}">@lang("client.product")</a>
+                        <a class="nav_item {{Request::route()->getName()  === 'client.service.index'? 'active' : ''}}" href="{{ locale_route("client.service.index") }}">@lang("client.service")</a>
+                        <a class="nav_item {{Request::route()->getName()  === 'client.about.index'? 'active' : ''}}" href="{{ locale_route("client.about.index") }}">@lang("client.about_us")</a>
+                        <a class="nav_item {{Request::route()->getName()  === 'client.project.index'? 'active' : ''}}" href="{{ locale_route("client.project.index") }}">@lang("client.projects")</a>
+                        <a class="nav_item {{Request::route()->getName()  === 'client.contact.index'? 'active' : ''}}" href="{{ locale_route("client.contact.index") }}">@lang("client.contact")</a>
                     </div>
 {{--                    @dd($localizations['current']['locale'])--}}
 
