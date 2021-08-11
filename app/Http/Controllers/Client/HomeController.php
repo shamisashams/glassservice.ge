@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
         $services = Service::where('status',true)->with(['file','translations'])->latest()->take(4)->get();
         $certificates = Certificate::query()->with(['file', 'translations']);
         $projects = Project::query()->with(['file', 'translations']);
+        $sliders = Slider::query()->with(['file', 'translations']);
+//        dd($sliders->get());
 
 
 
@@ -35,7 +38,8 @@ class HomeController extends Controller
             "products" => $products->get(),
             "services" => $services,
             "certificates" => $certificates->get(),
-            "projects" => $projects->get()
+            "projects" => $projects->get(),
+            "sliders" => $sliders->get()
         ]);
     }
 }

@@ -6,12 +6,12 @@
             </a>
             <div class="header_right flex">
                 <div class="navbar flex">
-                    <a class="nav_item active" href="{{ route("client.home.index") }}">მთავარი</a>
-                    <a class="nav_item" href="{{ route("client.product.index") }}">პროდუქტი</a>
-                    <a class="nav_item" href="{{ route("client.service.index") }}">სერვისი</a>
-                    <a class="nav_item" href="{{ route("client.about.index") }}">ჩვენ შესეხებ</a>
-                    <a class="nav_item" href="{{ route("client.project.index") }}">პროექტები</a>
-                    <a class="nav_item" href="{{ route("client.contact.index") }}">კონტაქტი</a>
+                    <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.header_home_navigation") </a>
+                    <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.header_product_navigation")</a>
+                    <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.header_service_navigation")</a>
+                    <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.header_about_us_navigation")</a>
+                    <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.header_projects_navigation")</a>
+                    <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.header_contact_navigation")</a>
                 </div>
                 <div class="flex">
                     <div class="search flex center">
@@ -52,12 +52,12 @@
                 </a>
                 <div class="header_right flex">
                     <div class="navbar flex">
-                        <a class="nav_item active" href="{{ locale_route("client.home.index") }}">მთავარი</a>
-                        <a class="nav_item" href="{{ locale_route("client.product.index") }}">პროდუქტი</a>
-                        <a class="nav_item" href="{{ locale_route("client.service.index") }}">სერვისი</a>
-                        <a class="nav_item" href="{{ locale_route("client.about.index") }}">ჩვენ შესეხებ</a>
-                        <a class="nav_item" href="{{ locale_route("client.project.index") }}">პროექტები</a>
-                        <a class="nav_item" href="{{ locale_route("client.contact.index") }}">კონტაქტი</a>
+                        <a class="nav_item active" href="{{ locale_route("client.home.index") }}">@lang("client.header_home_navigation") </a>
+                        <a class="nav_item" href="{{ locale_route("client.product.index") }}">@lang("client.header_product_navigation")</a>
+                        <a class="nav_item" href="{{ locale_route("client.service.index") }}">@lang("client.header_service_navigation")</a>
+                        <a class="nav_item" href="{{ locale_route("client.about.index") }}">@lang("client.header_about_us_navigation")</a>
+                        <a class="nav_item" href="{{ locale_route("client.project.index") }}">@lang("client.header_projects_navigation")</a>
+                        <a class="nav_item" href="{{ locale_route("client.contact.index") }}">@lang("client.header_contact_navigation")</a>
                     </div>
 {{--                    @dd($localizations['current']['locale'])--}}
 

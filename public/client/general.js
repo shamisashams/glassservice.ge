@@ -4,8 +4,8 @@ const closeSearch = document.querySelector(".close_search");
 // const projectFilterHome = document.querySelectorAll(".project_filter_home");
 // const projectContentHome = document.querySelectorAll(".project_content_home");
 const viewVideo = document.querySelectorAll(".view_video");
-const videoPopup = document.querySelector(".the_video_popup");
-const closeVideo = document.querySelector(".close_vid_popup");
+const videoPopup = document.querySelectorAll(".the_video_popup");
+const closeVideo = document.querySelectorAll(".close_vid_popup");
 // const productFilterPage = document.querySelectorAll(".product_filter_page");
 // const productPcontent = document.querySelectorAll(".product_p_content");
 const detImgFilter = document.querySelectorAll(".detail_img_filter");
@@ -39,7 +39,18 @@ closeSearch.addEventListener("click", () => {
 if ((viewVideo, closeVideo)) {
     viewVideo.forEach((el) => {
         el.addEventListener("click", () => {
-            videoPopup.classList.add("open");
+            videoPopup.forEach((video) => {
+                if (video.id===el.id){
+                    video.classList.add("open");
+                }
+            });
+        });
+    });
+    closeVideo.forEach((el) =>{
+        el.addEventListener("click", () => {
+            videoPopup.forEach((video) => {
+                    video.classList.remove("open");
+            });
         });
     });
     closeVideo.addEventListener("click", () => {

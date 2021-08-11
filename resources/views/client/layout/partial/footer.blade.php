@@ -11,12 +11,12 @@
             <a href="{{ locale_route("client.home.index") }}" class="paragraph light"> @lang("client.footer_home_navigation") </a>
             <a href="{{ locale_route("client.product.index") }}" class="paragraph light"> @lang("client.footer_product_navigation") </a>
             <a href="{{ locale_route("client.service.index") }}" class="paragraph light"> @lang("client.footer_service_navigation") </a>
-            <a href="#" class="paragraph light"> @lang("client.footer_about_us_navigation") </a>
-            <a href="#" class="paragraph light"> @lang("client.footer_projects_navigation") </a>
-            <a href="#" class="paragraph light"> @lang("client.footer_contact_navigation") </a>
+            <a href="{{ locale_route("client.about.index") }}" class="paragraph light"> @lang("client.footer_about_us_navigation") </a>
+            <a href="{{ locale_route("client.project.index") }}" class="paragraph light"> @lang("client.footer_projects_navigation") </a>
+            <a href="{{ locale_route("client.contact.index") }}" class="paragraph light"> @lang("client.footer_contact_navigation") </a>
         </div>
         <div class="column">
-            <div class="title light">დაგვიკავშირდით</div>
+            <div class="title light">@lang("client.footer_contact_us")</div>
             <a href="#" class="flex center"
             ><img src="/img/icons/footer/1.png" alt="" />
                 <div class="paragraph light">

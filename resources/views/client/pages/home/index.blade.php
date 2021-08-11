@@ -7,51 +7,22 @@
 @section('wrapper')
     <section class="hero_section">
         <div class="hero_slider">
-            <div class="slide">
-                <div class="overlay">
-                    <img src="/img/hero/1.png" alt="" class="bg_img"/>
-                    <div class="content wrapper flex">
-                        <div class="hero_head">სლაიდერის სათაური</div>
-                        <div class="paragraph light">
-                            შემთხვევითად გენერირებული ტექსტი ეხმარება დიზაინერებს და
-                            ტიპოგრაფიული ნაწარმის შემქმნელებს, რეალურთან
+            @foreach($sliders as $slider)
+                <div class="slide">
+                    <div class="overlay">
+                        <img src="{{url($slider->file ? $slider->file->file_url : '')}}" alt="" class="bg_img"/>
+                        <div class="content wrapper flex">
+                            <div class="hero_head">{{ $slider->title }}</div>
+                            <div class="paragraph light">
+                                {!! $slider->description !!}
+                            </div>
                         </div>
                     </div>
+                    <button class="view_video" id="{{$slider->id}}">
+                        <img src="/img/icons/hero/1.png" alt=""/>
+                    </button>
                 </div>
-                <button class="view_video">
-                    <img src="/img/icons/hero/1.png" alt=""/>
-                </button>
-            </div>
-            <div class="slide">
-                <div class="overlay">
-                    <img src="/img/hero/2.jpg" alt="" class="bg_img"/>
-                    <div class="content wrapper flex">
-                        <div class="hero_head">ეხმარება რეალურთან</div>
-                        <div class="paragraph light">
-                            შემთხვევითად გენერირებული დიზაინერებსდიზაინერებსტექსმის შემქმნტი
-                            ეხმარება დიზაინერებს და ტიპოგრაფიული ნაწარელებს,
-                        </div>
-                    </div>
-                </div>
-                <button class="view_video">
-                    <img src="/img/icons/hero/1.png" alt=""/>
-                </button>
-            </div>
-            <div class="slide">
-                <div class="overlay">
-                    <img src="/img/hero/3.jpg" alt="" class="bg_img"/>
-                    <div class="content wrapper flex">
-                        <div class="hero_head">ტიპოგრაფიული დიზაინერებს</div>
-                        <div class="paragraph light">
-                            შემთხვევითად ის შემქმნგენერირებულიელებს, რეალურთან ტექსტი
-                            ეხმარება დიზაინერებს და ტიპოგრაფიული ნაწარმ
-                        </div>
-                    </div>
-                </div>
-                <button class="view_video">
-                    <img src="/img/icons/hero/1.png" alt=""/>
-                </button>
-            </div>
+            @endforeach
         </div>
         <button class="arrow flex center" id="hero_prev">
             <img src="/img/icons/arrows/prev.svg" alt=""/>
@@ -274,18 +245,20 @@
 @endsection
 
 @section("home_video")
-    <div class="the_video_popup flex center">
-        <button class="close_vid_popup">
-            <img src="/img/icons/header/2.png" alt=""/>
-        </button>
-        <div class="video">
-            <iframe
-                src="https://www.youtube.com/embed/YjJJeB4x5go"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-            ></iframe>
+    @foreach($sliders as $slider)
+        <div class="the_video_popup flex center" id="{{$slider->id}}">
+            <button class="close_vid_popup">
+                <img src="/img/icons/header/2.png" alt=""/>
+            </button>
+            <div class="video">
+                <iframe
+                    src="https://www.youtube.com/embed/{{$slider->youtube_url}}"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
         </div>
-    </div>
+    @endforeach
 @endsection
