@@ -46,7 +46,7 @@ class TranslationRequest extends FormRequest
         ];
 
         if ($this->method !== 'GET') {
-            $data ['text.' . $defaultLanguage->id] = 'required|string';
+            $data ['text.' . $defaultLanguage->locale] = 'required|string';
         }
         return $data;
     }

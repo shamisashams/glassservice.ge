@@ -14,6 +14,7 @@ function get_url($lang): string
 
     $uriSegments[1] = $lang;
 
+
     $uriSegments = implode('/', $uriSegments);
     return $host . $uriSegments;
 }

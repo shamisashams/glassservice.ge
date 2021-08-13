@@ -1,6 +1,6 @@
 <?php
  return array (
-  'locales' => 
+  'locales' =>
   array (
     0 => 'ge',
     1 => 'en',
@@ -16,7 +16,7 @@
   'translation_suffix' => 'Translation',
   'locale_key' => 'locale',
   'to_array_always_loads_translations' => true,
-  'rule_factory' => 
+  'rule_factory' =>
   array (
     'format' => 1,
     'prefix' => '%',
