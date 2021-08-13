@@ -36,7 +36,7 @@ closeSearch.addEventListener("click", () => {
 // });
 
 // video popup
-if ((viewVideo, closeVideo)) {
+if ((viewVideo && closeVideo)) {
     viewVideo.forEach((el) => {
         el.addEventListener("click", () => {
             videoPopup.forEach((video) => {
@@ -53,9 +53,7 @@ if ((viewVideo, closeVideo)) {
             });
         });
     });
-    closeVideo.addEventListener("click", () => {
-        videoPopup.classList.remove("open");
-    });
+
 }
 
 // product filter on p page
