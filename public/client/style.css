@@ -457,6 +457,7 @@ img {
 } */
 .pro_sliders_both .img {
     height: 430px;
+    max-width: 400px;
 }
 .pro_sliders_both .img img {
     transition: 0.3s;
@@ -887,7 +888,11 @@ svg {
     height: 107px;
     background: #d5d5d5;
 }
-
+.about_us_page .bottom .bottom_flex .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 /* contact page */
 .contact_page .content .title {
     margin-bottom: 29px;
@@ -1648,5 +1653,8 @@ svg {
 @media screen and (max-width: 500px) {
     .product_detail .content .view .slider .details_slider {
         width: 262px;
+    }
+    .pro_sliders_both .img {
+        max-width: 300px;
     }
 }

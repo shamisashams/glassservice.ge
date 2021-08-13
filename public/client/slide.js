@@ -23,7 +23,7 @@ $(".home_products_slider").slick({
     arrows: true,
     prevArrow: "#prev_product",
     nextArrow: "#next_product",
-    dots: true,
+    dots: false,
     speed: 600,
     infinite: true,
     touchThreshold: 100,
@@ -52,7 +52,7 @@ $(".home_projects_slider").slick({
     arrows: true,
     prevArrow: "#prev_project",
     nextArrow: "#next_project",
-    dots: true,
+    dots: false,
     speed: 600,
     infinite: true,
     touchThreshold: 100,
@@ -128,12 +128,12 @@ $(".home_about_slider").slick({
 // });
 $(".ppage_slider").slick({
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     draggable: true,
     arrows: true,
     prevArrow: "#pp_prev",
     nextArrow: "#pp_next",
-    dots: true,
+    dots: false,
     speed: 500,
     infinite: true,
     touchThreshold: 100,
@@ -150,6 +150,7 @@ $(".ppage_slider").slick({
             breakpoint: 1000,
             settings: {
                 slidesToShow: 2,
+                centerMode: true,
             },
         },
         {
@@ -178,6 +179,7 @@ $(".details_slider").slick({
             breakpoint: 550,
             settings: {
                 slidesToShow: 2,
+                centerMode: true,
             },
         },
         {
@@ -190,12 +192,12 @@ $(".details_slider").slick({
 });
 $(".bottom_about_slide").slick({
     slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToScroll: 1,
     draggable: true,
     arrows: true,
     prevArrow: "#prev_about",
     nextArrow: "#next_about",
-    dots: true,
+    dots: false,
     speed: 1000,
     infinite: true,
     touchThreshold: 100,
@@ -206,28 +208,24 @@ $(".bottom_about_slide").slick({
             breakpoint: 1500,
             settings: {
                 slidesToShow: 5,
-                slidesToScroll: 5,
             },
         },
         {
             breakpoint: 1200,
             settings: {
                 slidesToShow: 4,
-                slidesToScroll: 4,
             },
         },
         {
             breakpoint: 900,
             settings: {
                 slidesToShow: 3,
-                slidesToScroll: 3,
             },
         },
         {
             breakpoint: 600,
             settings: {
                 slidesToShow: 2,
-                slidesToScroll: 2,
             },
         },
         {
@@ -235,7 +233,6 @@ $(".bottom_about_slide").slick({
             settings: {
                 centerMode: true,
                 slidesToShow: 1,
-                slidesToScroll: 1,
             },
         },
     ],
