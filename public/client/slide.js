@@ -34,7 +34,6 @@ $(".home_products_slider").slick({
             breakpoint: 1100,
             settings: {
                 slidesToShow: 2,
-                centerMode: true,
             },
         },
         {
@@ -63,7 +62,6 @@ $(".home_projects_slider").slick({
             breakpoint: 1100,
             settings: {
                 slidesToShow: 2,
-                centerMode: true,
             },
         },
         {
@@ -150,7 +148,6 @@ $(".ppage_slider").slick({
             breakpoint: 1000,
             settings: {
                 slidesToShow: 2,
-                centerMode: true,
             },
         },
         {
@@ -179,7 +176,6 @@ $(".details_slider").slick({
             breakpoint: 550,
             settings: {
                 slidesToShow: 2,
-                centerMode: true,
             },
         },
         {
@@ -231,7 +227,6 @@ $(".bottom_about_slide").slick({
         {
             breakpoint: 400,
             settings: {
-                centerMode: true,
                 slidesToShow: 1,
             },
         },
