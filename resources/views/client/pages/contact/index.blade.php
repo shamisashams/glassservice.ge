@@ -12,7 +12,7 @@
             <div class="column">
                 <div class="title">@lang("client.contact_us")</div>
                 <div class="paragraph">
-                    {{ $page->description }}
+                    {!! $page->description !!}
                 </div>
                 <div class="flex center">
                     <img src="/img/icons/contact/1.png" alt="" />
