@@ -147,11 +147,12 @@ $(".ppage_slider").slick({
         {
             breakpoint: 1000,
             settings: {
-                slidesToShow: 1,
+                slidesToShow: 2,
+                centerMode: true,
             },
         },
         {
-            breakpoint: 400,
+            breakpoint: 500,
             settings: {
                 slidesToShow: 1,
             },
